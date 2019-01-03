@@ -14,7 +14,11 @@ export class App {
         config.title = "Katalye";
         config.map([
             {
-                route: ["", "minions"],
+                route: [""],
+                redirect: "minions"
+            },
+            {
+                route: ["minions"],
                 name: "minions",
                 moduleId: PLATFORM.moduleName("./pages/minions/minions"),
                 nav: true,
