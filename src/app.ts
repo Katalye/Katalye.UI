@@ -1,4 +1,5 @@
 import "./infrastructure/styling/bootstrap";
+import "./infrastructure/styling/fontawesome";
 import "./app.scss";
 import { autoinject } from "aurelia-framework";
 
