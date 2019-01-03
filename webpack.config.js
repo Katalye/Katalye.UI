@@ -55,7 +55,13 @@ const webpackConfig = {
                             sourceMap: true,
                             includePaths: [path.resolve("./node_modules")],
                         }
-                    }
+                    },
+                    {
+                        loader: 'sass-resources-loader',
+                        options: {
+                            resources: ['./src/infrastructure/styling/global.scss']
+                        },
+                    },
                 ]
             }
         ]
