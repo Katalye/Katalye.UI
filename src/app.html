@@ -1,2 +1,45 @@
 <template>
+    <div class="app">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">Katalye</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="navbar-nav mr-auto menu">
+                    <li class="nav-item ${nav.isActive ? 'active' : ''}" repeat.for="nav of router.navigation">
+                        <a class="nav-link" href.bind="nav.href">
+                            <i class="${nav.settings.icon} fa-fw mr-1"></i>
+                            ${nav.title}
+                        </a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <form class="form-inline my-2 my-lg-0">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search Minions" aria-label="Search">
+                            <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search Minions</button> -->
+                        </form>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" title="Alerts">
+                            <i class="far fa-bell"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" title="Options">
+                            <i class="fas fa-cogs"></i>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+        <div class="container">
+            <router-view></router-view>
+        </div>
+    </div>
+
 </template>

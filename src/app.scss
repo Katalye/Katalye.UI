@@ -1,0 +1,21 @@
+.app {
+    .navbar {
+        padding: 0;
+        border-top: #306C73 solid 8px;
+        .nav-item,
+        .navbar-brand {
+            padding: 0.5em 0.5em;
+        }
+        .navbar-brand {
+            margin: 0 0.8em;
+        }
+        .menu {
+            .nav-item {
+                &.active,
+                &:hover {
+                    background-color: #306C73;
+                }
+            }
+        }
+    }
+}
