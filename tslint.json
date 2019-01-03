@@ -1,0 +1,22 @@
+{
+    "defaultSeverity": "warn",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "ordered-imports": false,
+        "member-access": [
+            true,
+            "check-accessor",
+            "check-constructor",
+            "check-parameter-property"
+        ],
+        "arrow-parens": false,
+        "trailing-comma": false,
+        "triple-equals": false,
+        "prefer-const": false,
+        "object-literal-sort-keys": false
+    },
+    "rulesDirectory": []
+}
