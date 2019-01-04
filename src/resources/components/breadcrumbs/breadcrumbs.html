@@ -1,13 +1,14 @@
 <template>
+    <li class="nav-item d-flex align-items-center">
+        <span class="nav-link separator">/</span>
+    </li>
     <template repeat.for="instruction of instructions">
         <template if.one-time="instruction.config.title">
-            <li class="nav-item">
-                <template if.one-time="$index !== 0">
-                    <span>|</span>
-                </template>
+            <li class="nav-item d-flex align-items-center">
                 <a class="nav-link ${ $last ? 'active' : '' }" href="javascript:void(0)" click.trigger="navigateToRoute(instruction)">
                     ${instruction.config.title}
                 </a>
+                <span class="nav-link separator">/</span>
             </li>
         </template>
     </template>
