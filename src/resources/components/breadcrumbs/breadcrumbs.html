@@ -5,7 +5,7 @@
     <template repeat.for="instruction of instructions">
         <template if.one-time="instruction.config.title">
             <li class="nav-item d-flex align-items-center">
-                <a class="nav-link ${ $last ? 'active' : '' }" href="javascript:void(0)" click.trigger="navigateToRoute(instruction)">
+                <a class="nav-link ${ $last ? 'active' : '' } text-lowercase" href="javascript:void(0)" click.trigger="navigateToRoute(instruction)">
                     ${instruction.config.title}
                 </a>
                 <span class="nav-link separator">/</span>
