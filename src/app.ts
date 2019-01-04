@@ -7,7 +7,13 @@ import { RouterConfiguration, Router } from "aurelia-router";
 @autoinject()
 export class App {
 
+    public sidebarOpen: boolean = false;
+
     private router: Router;
+
+    public toggleSidebar() {
+        this.sidebarOpen = !this.sidebarOpen;
+    }
 
     public configureRouter(config: RouterConfiguration, router: Router): void {
         this.router = router;
@@ -23,6 +29,7 @@ export class App {
                 moduleId: PLATFORM.moduleName("./pages/minions/minions"),
                 nav: true,
                 title: "Minions",
+                breadcrumb: true,
                 settings: {
                     icon: "fas fa-server"
                 }
@@ -33,6 +40,7 @@ export class App {
                 moduleId: PLATFORM.moduleName("./pages/not-found/not-found"),
                 nav: true,
                 title: "Jobs",
+                breadcrumb: true,
                 settings: {
                     icon: "fas fa-truck",
                 }
@@ -43,10 +51,11 @@ export class App {
                 moduleId: PLATFORM.moduleName("./pages/not-found/not-found"),
                 nav: true,
                 title: "Reports",
+                breadcrumb: true,
                 settings: {
                     icon: "fas fa-book",
                 }
-            },
+            }
         ]);
 
         config.mapUnknownRoutes(PLATFORM.moduleName("./pages/not-found/not-found"));

@@ -16,7 +16,8 @@
         "trailing-comma": false,
         "triple-equals": false,
         "prefer-const": false,
-        "object-literal-sort-keys": false
+        "object-literal-sort-keys": false,
+        "member-ordering": false
     },
     "rulesDirectory": []
 }

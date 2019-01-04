@@ -1,0 +1,14 @@
+<template>
+    <template repeat.for="instruction of instructions">
+        <template if.one-time="instruction.config.title">
+            <li class="nav-item">
+                <template if.one-time="$index !== 0">
+                    <span>|</span>
+                </template>
+                <a class="nav-link ${ $last ? 'active' : '' }" href="javascript:void(0)" click.trigger="navigateToRoute(instruction)">
+                    ${instruction.config.title}
+                </a>
+            </li>
+        </template>
+    </template>
+</template>
