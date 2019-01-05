@@ -55,11 +55,18 @@
                         </thead>
                         <tr repeat.for="minion of minions.result">
                             <th scope="row">${minion.id}</th>
-                            <td>${minion.lastAuthenticated}</td>
-                            <td>${minion.lastSeen}</td>
+                            <td>
+                                ${minion.lastAuthenticated | dateFormat} (${minion.lastAuthenticated | timeAgo})
+                            </td>
+                            <td>
+                                ${minion.lastSeen | dateFormat} (${minion.lastSeen | timeAgo})
+                            </td>
                         </tr>
                         </tbody>
                     </table>
+
+                    <pagination page.bind="page" count.bind="minions.count" pages.bind="minions.pages"></pagination>
+
                 </div>
             </div>
         </div>

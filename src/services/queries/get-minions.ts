@@ -1,18 +1,20 @@
 import { KatalyeClient } from "./../../infrastructure/katalye-client";
-import { BaseRequest, IRequestHandler, IPagedResult } from "./../mediator";
+import { BaseRequest, IRequestHandler, IPagedResult, IPagedRequest } from "./../mediator";
 import { autoinject } from "aurelia-framework";
 
 export namespace GetMinions {
 
-    export class Request extends BaseRequest<Result> {
-
+    export class Request extends BaseRequest<Result> implements IPagedRequest {
+        public page: number;
+        public size: number;
     }
 
     export class Result implements IPagedResult<Model> {
+        public pages: number;
         public page: number;
         public size: number;
         public count: number;
-        public result: any[];
+        public result: Model[];
     }
 
     export class Model {
@@ -33,6 +35,7 @@ export namespace GetMinions {
         public handle(request: Request): Promise<Result> {
             return this.client
                 .withPath("api/v1/minions")
+                .withQuery({ ...request })
                 .withMethod("GET")
                 .fetch<Result>();
         }

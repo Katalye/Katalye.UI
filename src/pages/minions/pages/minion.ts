@@ -3,6 +3,7 @@ import { Router } from "aurelia-router";
 
 @autoinject
 export class Minion {
+
     public router: Router;
     public minionId: string;
 

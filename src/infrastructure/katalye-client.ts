@@ -7,7 +7,7 @@ import { getLogger } from "aurelia-logging";
 @autoinject
 export class KatalyeClient {
 
-    private logger = getLogger("KatalyeClient");
+    private logger = getLogger("katalye-client");
 
     private client: HttpClient;
     private method: string = "GET";

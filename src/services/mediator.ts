@@ -117,9 +117,15 @@ export class Handler<TRequest extends BaseRequest<TResponse>, TResponse> {
     }
 }
 
+export interface IPagedRequest {
+    page: number;
+    size: number;
+}
+
 export interface IPagedResult<T> {
     page: number;
     size: number;
     count: number;
+    pages: number;
     result: T[];
 }
