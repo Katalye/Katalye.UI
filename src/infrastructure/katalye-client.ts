@@ -67,7 +67,6 @@ export class KatalyeClient {
         }
 
         let json = await result.json();
-        let finalObject = JSON.parse(json);
-        return finalObject;
+        return json;
     }
 }

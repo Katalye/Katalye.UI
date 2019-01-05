@@ -40,37 +40,24 @@
     <page-container>
         <div class="row">
             <div class="col mt-3">
-                <p class="lead d-none d-sm-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <p class="lead d-none d-sm-block">
+                    ${minions.count} minions found.
+                </p>
 
                 <div class="row mb-3">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">First</th>
-                                <th scope="col">Last</th>
-                                <th scope="col">Handle</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">Last Authenticated</th>
+                                <th scope="col">Last Seen</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                            </tr>
+                        <tr repeat.for="minion of minions.result">
+                            <th scope="row">${minion.id}</th>
+                            <td>${minion.lastAuthenticated}</td>
+                            <td>${minion.lastSeen}</td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
