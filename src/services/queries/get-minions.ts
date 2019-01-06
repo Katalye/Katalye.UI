@@ -7,6 +7,7 @@ export namespace GetMinions {
     export class Request extends BaseRequest<Result> implements IPagedRequest {
         public page: number;
         public size: number;
+        public grainSearch: Array<{ Key: string, Value: string }>;
     }
 
     export class Result implements IPagedResult<Model> {
@@ -37,9 +38,14 @@ export namespace GetMinions {
         }
 
         public handle(request: Request): Promise<Result> {
+            let keyValues = (request.grainSearch || []).map(x => `${x.Key},${x.Value}`);
             return this.client
                 .withPath("api/v1/minions")
-                .withQuery({ ...request })
+                .withQuery({
+                    page: request.page,
+                    size: request.size,
+                    grainSearch: keyValues
+                })
                 .withMethod("GET")
                 .fetch<Result>();
         }
