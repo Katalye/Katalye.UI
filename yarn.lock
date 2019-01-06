@@ -593,11 +593,6 @@
   resolved "https://registry.yarnpkg.com/@jeykeu/font-os/-/font-os-1.0.2.tgz#bd8867a5b3c2ec93c6472007c9c4a592cd4b2496"
   integrity sha1-vYhnpbPC7JPGRyAHycSlks1LJJY=
 
-"@ttskch/select2-bootstrap4-theme@^1.0.5":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@ttskch/select2-bootstrap4-theme/-/select2-bootstrap4-theme-1.0.5.tgz#1610ef4c672c0f4cfd34d05bfc81b1c605bf4a9a"
-  integrity sha512-84qDd9eDwR6TijtPtV1jzhKcZnXZXwFxS98tc6Rh1mMv285Bptmv1JcsGvq33k7oq1QqK54p6BlYRx8kTP0ZiA==
-
 "@types/bootstrap@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@types/bootstrap/-/bootstrap-4.2.0.tgz#d3a1eae1ddda9b2ea9984ecd4882b5bc5d58e5c1"
@@ -625,23 +620,17 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.119.tgz#be847e5f4bc3e35e46d041c394ead8b603ad8b39"
   integrity sha512-Z3TNyBL8Vd/M9D9Ms2S3LmFq2sSMzahodD6rCS9V2N44HUMINb75jNkSuwAx7eo2ufqTdfOdtGQpNbieUjPQmw==
 
-"@types/requirejs@*":
-  version "2.1.31"
-  resolved "https://registry.yarnpkg.com/@types/requirejs/-/requirejs-2.1.31.tgz#a24eaa0ee4f6b84feb8f521ca6550d48490b2bc6"
-  integrity sha512-b2soeyuU76rMbcRJ4e0hEl0tbMhFwZeTC0VZnfuWlfGlk6BwWNsev6kFu/twKABPX29wkX84wU2o+cEJoXsiTw==
-
-"@types/select2@^4.0.47":
-  version "4.0.47"
-  resolved "https://registry.yarnpkg.com/@types/select2/-/select2-4.0.47.tgz#057e360eee1108d70c77a5735ddf12ed99ec2e41"
-  integrity sha512-98e09/mmQNqeikvouD97Ed/rROgRCxKkWZHIWSTssFoIK6efT0jYx8OoQpqsEOeTe+rprSz8mNtV5lPKuxjTdg==
-  dependencies:
-    "@types/jquery" "*"
-    "@types/requirejs" "*"
-
 "@types/sizzle@*":
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/@types/sizzle/-/sizzle-2.3.2.tgz#a811b8c18e2babab7d542b3365887ae2e4d9de47"
   integrity sha512-7EJYyKTL7tFR8+gDbB6Wwz/arpGa0Mywk1TJbNzKzHtzbwVmY4HR9WqS5VV7dsBUKQmPNr192jHr/VpBluj/hg==
+
+"@types/typeahead@^0.11.32":
+  version "0.11.32"
+  resolved "https://registry.yarnpkg.com/@types/typeahead/-/typeahead-0.11.32.tgz#117693a253a8ad46b3824b47539982c093cc9296"
+  integrity sha512-5NkqKPwkBh2dGxFEJjc4Vt9/XsaGmx+tfXMfcJxWjPvCvvCFEKRCz+bz7ZfRAiO0e0Hh1foBol3anLzMY1Ea8A==
+  dependencies:
+    "@types/jquery" "*"
 
 "@types/webpack-env@^1.13.6":
   version "1.13.6"
@@ -858,11 +847,6 @@ ajv@^6.1.0, ajv@^6.5.5:
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
-
-almond@~0.3.1:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/almond/-/almond-0.3.3.tgz#a0e7c95ac7624d6417b4494b1e68bff693168a20"
-  integrity sha1-oOfJWsdiTWQXtElLHmi/9pMWiiA=
 
 amdefine@>=0.0.4:
   version "1.0.1"
@@ -1995,6 +1979,13 @@ core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+
+corejs-typeahead@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/corejs-typeahead/-/corejs-typeahead-1.2.1.tgz#345a8afe664cc494075b59b64777807f0b3f132b"
+  integrity sha1-NFqK/mZMxJQHW1m2R3eAfws/Eys=
+  dependencies:
+    jquery ">=1.11"
 
 cosmiconfig@^4.0.0:
   version "4.0.0"
@@ -3794,12 +3785,7 @@ isstream@~0.1.2:
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
   integrity sha1-R+Y/evVa+m+S4VAOaQ64uFKcCZo=
 
-jquery-mousewheel@~3.1.13:
-  version "3.1.13"
-  resolved "https://registry.yarnpkg.com/jquery-mousewheel/-/jquery-mousewheel-3.1.13.tgz#06f0335f16e353a695e7206bf50503cb523a6ee5"
-  integrity sha1-BvAzXxbjU6aV5yBr9QUDy1I6buU=
-
-jquery@^3.3.1:
+jquery@>=1.11, jquery@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
   integrity sha512-Ubldcmxp5np52/ENotGxlLe6aGMvmF4R8S6tZjsP6Knsaxd/xp3Zrh50cG93lR6nPXyUFwzN3ZSOQI0wRJNdGg==
@@ -5731,14 +5717,6 @@ select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
   integrity sha1-Yl2GWPhlr0Psliv8N2o3NZpJlMo=
-
-select2@^4.0.6-rc.1:
-  version "4.0.6-rc.1"
-  resolved "https://registry.yarnpkg.com/select2/-/select2-4.0.6-rc.1.tgz#aa6c3038a7f0f2e91ffade38f0a21c15e1813276"
-  integrity sha1-qmwwOKfw8ukf+t448KIcFeGBMnY=
-  dependencies:
-    almond "~0.3.1"
-    jquery-mousewheel "~3.1.13"
 
 selfsigned@^1.9.1:
   version "1.10.4"

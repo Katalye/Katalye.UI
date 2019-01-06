@@ -1,5 +1,6 @@
+import "./type-ahead-select.scss";
 import jQuery from "jquery";
-import "select2";
+import "corejs-typeahead";
 import { autoinject, bindable, bindingMode } from "aurelia-framework";
 
 @autoinject
@@ -7,6 +8,9 @@ export class TypeAheadSelect {
 
     public self: Element;
     public element: HTMLElement;
+
+    @bindable
+    public query: (obj: { query: string }) => Promise<string[]>;
 
     @bindable
     public values: string[];
@@ -21,13 +25,37 @@ export class TypeAheadSelect {
     }
 
     public attached() {
-        jQuery(this.element)
-            .select2({
-                theme: "bootstrap4",
-                width: "100%"
-            })
-            .on("select2:select", () => {
-                this.element.dispatchEvent(new Event("change"));
-            });
+        jQuery(this.element).typeahead(
+            {
+                hint: true,
+                highlight: true,
+                minLength: 0
+            },
+            {
+                name: "test",
+                source: this.getSourceFunction(),
+                limit: 10,
+            }
+        );
+    }
+
+    public getSourceFunction() {
+        let self = this;
+        return function call(this: any, query: string, _: (matches: string[]) => void, asyncCallback: (matches: string[]) => void) {
+            self.invokeQuery(query)
+                .then((result) => {
+                    asyncCallback(result);
+                });
+        };
+    }
+
+    public async invokeQuery(query: string) {
+        if (!this.query) {
+            return [];
+        }
+        let result = await this.query({
+            query
+        });
+        return result;
     }
 }
