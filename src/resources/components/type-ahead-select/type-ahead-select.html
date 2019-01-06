@@ -1,0 +1,8 @@
+<template>
+    <select element.ref="element" class="form-control" value.bind="selectedValue">
+        <template repeat.for="value of values">
+            <option value="">Grains...</option>
+            <option value.bind="value">${value}</option>
+        </template>
+    </select>
+</template>
