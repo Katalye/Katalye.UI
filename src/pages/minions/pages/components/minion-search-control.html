@@ -1,0 +1,19 @@
+<template>
+    <div class="row">
+        <!-- <div class="col-3">
+            <div class="form-group">
+                <label for="formGroupExampleInput">Example label</label>
+                <type-ahead-select values.bind="grains.grainPaths" selected-value.bind="selectedValue"></type-ahead-select>
+                ${selectedValue}
+            </div>
+        </div> -->
+
+        <div class="input-group col-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="inputGroup-sizing-default">OS</span>
+            </div>
+            <type-ahead-select query.call="GetOsValues(query)" selected-value.bind="selectedValue"></type-ahead-select>
+        </div>
+
+    </div>
+</template>
