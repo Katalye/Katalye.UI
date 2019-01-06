@@ -10,25 +10,7 @@ body {
 $sidebar-width: 200px;
 .app {
     padding-top: 56px;
-    height: 100%; // .navbar {
-    //     padding: 0;
-    //     border-top: #306C73 solid 8px;
-    //     .nav-item,
-    //     .navbar-brand {
-    //         padding: 0.5em 0.5em;
-    //     }
-    //     .navbar-brand {
-    //         margin: 0 0.8em;
-    //     }
-    //     .menu {
-    //         .nav-item {
-    //             &.active,
-    //             &:hover {
-    //                 background-color: #306C73;
-    //             }
-    //         }
-    //     }
-    // }
+    height: 100%;
     .navbar {
         padding: 0;
         .crumbs {
@@ -51,9 +33,6 @@ $sidebar-width: 200px;
             height: 56px;
             padding: 0;
             font-weight: 500;
-            .logo-y {
-                // color: #306C73;
-            }
         }
         .nav-item {
             padding: 0.5em 0.5em;
@@ -92,5 +71,15 @@ $sidebar-width: 200px;
             height: 100%;
             overflow: auto;
         }
+    }
+}
+
+.table {
+    thead th {
+        border-bottom-width: 0;
+        border-top-width: 0;
+    }
+    tr td {
+        vertical-align: middle
     }
 }

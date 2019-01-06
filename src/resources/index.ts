@@ -6,6 +6,9 @@ export function configure(config: FrameworkConfiguration) {
         PLATFORM.moduleName("./components/page-control/page-control"),
         PLATFORM.moduleName("./components/breadcrumbs/breadcrumbs"),
         PLATFORM.moduleName("./components/pagination/pagination"),
+        PLATFORM.moduleName("./components/os-icon/os-icon"),
         PLATFORM.moduleName("./converters/date-time"),
+        PLATFORM.moduleName("./converters/string"),
+        PLATFORM.moduleName("./converters/arrays"),
     ]);
 }
