@@ -1,5 +1,8 @@
 <template>
-    <span class="type-ahead-select">
+    <div class="input-group type-ahead-select">
+        <div class="input-group-prepend">
+            <span class="input-group-text">${name}</span>
+        </div>
         <input type="text" element.ref="element" class="form-control" value.bind="selectedValue">
-    </span>
+    </div>
 </template>

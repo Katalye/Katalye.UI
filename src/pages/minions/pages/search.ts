@@ -5,11 +5,25 @@ import { GetMinions } from "../../../services/queries/get-minions";
 @autoinject
 export class Search {
 
-    @bindable
+    private mediator: Mediator;
+
+    @bindable({ changeHandler: "refresh" })
     public page: number = 1;
 
-    private mediator: Mediator;
+    @bindable({ changeHandler: "refresh" })
+    public os: string;
+
+    @bindable({ changeHandler: "refresh" })
+    public ipv4: string;
+
+    @bindable({ changeHandler: "refresh" })
+    public master: string;
+
+    @bindable({ changeHandler: "refresh" })
+    public minionId: string;
+
     public minions: GetMinions.Result;
+    public selectedValue: string;
 
     public constructor(mediator: Mediator) {
         this.mediator = mediator;
@@ -23,15 +37,17 @@ export class Search {
         await this.refresh();
     }
 
-    public async pageChanged() {
-        await this.refresh();
-    }
-
     public async refresh() {
         this.minions = await this.mediator
             .for(GetMinions.Request)
             .handle<GetMinions.Result>({
-                page: this.page
+                page: this.page,
+                grainSearch: [
+                    { Key: "os", Value: this.os },
+                    { Key: "ipv4", Value: this.ipv4 },
+                    { Key: "master", Value: this.master },
+                    { Key: "id", Value: this.minionId },
+                ]
             });
     }
 }

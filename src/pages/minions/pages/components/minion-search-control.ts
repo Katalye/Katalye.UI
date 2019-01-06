@@ -1,20 +1,39 @@
-import { autoinject } from "aurelia-framework";
+import { autoinject, bindable, bindingMode } from "aurelia-framework";
 import { Mediator } from "../../../../services/mediator";
-import { GetSearchGrains } from "../../../../services/queries/get-search-grains";
 import { GetSearchGrainValues } from "../../../../services/queries/get-search-grain-values";
 
 @autoinject
 export class MinionSearchControl {
 
     private mediator: Mediator;
-    public grains: GetSearchGrains.Result;
-    public selectedValue: string;
+    private element: Element;
 
-    public constructor(mediator: Mediator) {
+    @bindable({
+        defaultBindingMode: bindingMode.twoWay,
+    })
+    public os: string;
+
+    @bindable({
+        defaultBindingMode: bindingMode.twoWay,
+    })
+    public ipv4: string;
+
+    @bindable({
+        defaultBindingMode: bindingMode.twoWay,
+    })
+    public master: string;
+
+    @bindable({
+        defaultBindingMode: bindingMode.twoWay,
+    })
+    public minionId: string;
+
+    public constructor(mediator: Mediator, element: Element) {
         this.mediator = mediator;
+        this.element = element;
     }
 
-    public async GetOsValues(query: string) {
+    public async getOsValues(query: string) {
         let result = await this.mediator
             .for(GetSearchGrainValues.Request)
             .handle<GetSearchGrainValues.Result>({
@@ -22,5 +41,39 @@ export class MinionSearchControl {
                 search: query
             });
         return result.values;
+    }
+
+    public async getIpv4Values(query: string) {
+        let result = await this.mediator
+            .for(GetSearchGrainValues.Request)
+            .handle<GetSearchGrainValues.Result>({
+                path: "ipv4",
+                search: query
+            });
+        return result.values;
+    }
+
+    public async getMasterValues(query: string) {
+        let result = await this.mediator
+            .for(GetSearchGrainValues.Request)
+            .handle<GetSearchGrainValues.Result>({
+                path: "master",
+                search: query
+            });
+        return result.values;
+    }
+
+    public async getMinionIdValues(query: string) {
+        let result = await this.mediator
+            .for(GetSearchGrainValues.Request)
+            .handle<GetSearchGrainValues.Result>({
+                path: "id",
+                search: query
+            });
+        return result.values;
+    }
+
+    public refresh() {
+        this.element.dispatchEvent(new Event("refresh"));
     }
 }

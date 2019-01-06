@@ -38,7 +38,9 @@ export namespace GetMinions {
         }
 
         public handle(request: Request): Promise<Result> {
-            let keyValues = (request.grainSearch || []).map(x => `${x.Key},${x.Value}`);
+            let keyValues = (request.grainSearch || [])
+                .filter(x => x.Value)
+                .map(x => `${x.Key},${x.Value}`);
             return this.client
                 .withPath("api/v1/minions")
                 .withQuery({

@@ -20,3 +20,10 @@ span.twitter-typeahead {
         }
     }
 }
+
+.input-group {
+    .twitter-typeahead>.tt-input {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+}

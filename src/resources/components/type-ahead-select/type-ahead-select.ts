@@ -10,10 +10,10 @@ export class TypeAheadSelect {
     public element: HTMLElement;
 
     @bindable
-    public query: (obj: { query: string }) => Promise<string[]>;
+    public name: string;
 
     @bindable
-    public values: string[];
+    public query: (obj: { query: string }) => Promise<string[]>;
 
     @bindable({
         defaultBindingMode: bindingMode.twoWay,
@@ -36,7 +36,10 @@ export class TypeAheadSelect {
                 source: this.getSourceFunction(),
                 limit: 10,
             }
-        );
+        ).on("typeahead:select", () => {
+            this.element.dispatchEvent(new Event("change"));
+            // console.log("change");
+        });
     }
 
     public getSourceFunction() {

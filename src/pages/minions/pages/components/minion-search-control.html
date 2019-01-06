@@ -1,19 +1,25 @@
 <template>
-    <div class="row">
-        <!-- <div class="col-3">
-            <div class="form-group">
-                <label for="formGroupExampleInput">Example label</label>
-                <type-ahead-select values.bind="grains.grainPaths" selected-value.bind="selectedValue"></type-ahead-select>
-                ${selectedValue}
-            </div>
-        </div> -->
+    <form submit.trigger="refresh()">
+        <div class="form-row">
 
-        <div class="input-group col-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">OS</span>
+            <div class="col-auto">
+                <type-ahead-select query.call="getMinionIdValues(query)" selected-value.bind="minionId" name="Minion"></type-ahead-select>
             </div>
-            <type-ahead-select query.call="GetOsValues(query)" selected-value.bind="selectedValue"></type-ahead-select>
+
+            <div class="col-auto">
+                <type-ahead-select query.call="getOsValues(query)" selected-value.bind="os" name="OS"></type-ahead-select>
+            </div>
+            <div class="col-auto">
+                <type-ahead-select query.call="getIpv4Values(query)" selected-value.bind="ipv4" name="IPv4"></type-ahead-select>
+            </div>
+            <div class="col-auto">
+                <type-ahead-select query.call="getMasterValues(query)" selected-value.bind="master" name="Master"></type-ahead-select>
+            </div>
+
+            <div class="col-auto">
+                <button type="submit" class="btn btn-light">Search</button>
+            </div>
+
         </div>
-
-    </div>
+    </form>
 </template>
