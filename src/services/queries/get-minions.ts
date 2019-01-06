@@ -21,6 +21,10 @@ export namespace GetMinions {
         public id: string;
         public lastAuthenticated: string;
         public lastSeen: string;
+        public ipV4Addresses: string[];
+        public master: string[];
+        public os: string[];
+        public saltMinionVersion: string[];
     }
 
     @autoinject

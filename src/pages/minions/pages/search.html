@@ -39,35 +39,65 @@
     </page-control>
     <page-container>
         <div class="row">
-            <div class="col mt-3">
-                <p class="lead d-none d-sm-block">
-                    ${minions.count} minions found.
-                </p>
-
-                <div class="row mb-3">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">ID</th>
-                                <th scope="col">Last Authenticated</th>
-                                <th scope="col">Last Seen</th>
-                            </tr>
-                        </thead>
-                        <tr repeat.for="minion of minions.result">
-                            <th scope="row">${minion.id}</th>
-                            <td>
-                                ${minion.lastAuthenticated | dateFormat} (${minion.lastAuthenticated | timeAgo})
-                            </td>
-                            <td>
-                                ${minion.lastSeen | dateFormat} (${minion.lastSeen | timeAgo})
-                            </td>
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col" class="ml-2">Minion</th>
+                            <th scope="col">Operating System</th>
+                            <th scope="col">IPv4 Address</th>
+                            <th scope="col">Last Seen</th>
+                            <th scope="col">Last Authenticated</th>
+                            <th scope="col">
+                                Minion Version
+                                <br>
+                                Salt Master
+                            </th>
                         </tr>
-                        </tbody>
-                    </table>
+                    </thead>
+                    <tr repeat.for="minion of minions.result">
+                        <td></td>
+                        <td>
+                            <i class="fas fa-circle fa-xs mr-2 ml-2 text-success"></i>
+                            <a route-href="route: minion; params.bind: { minionId: minion.id }">
+                                <strong>${minion.id}</strong>
+                            </a>
+                        </td>
+                        <td>
+                            <os-icon os.bind="minion.os | join"></os-icon>
+                            ${minion.os | join}
+                        </td>
+                        <td>
+                            <span repeat.for="address of minion.ipV4Addresses | remove:'127\.0\.0\.1' | batch:2">
+                                ${address | join}
+                                <br>
+                            </span>
+                        </td>
+                        <td>
+                            ${minion.lastSeen | timeAgo}
+                            <br>
+                            <span class="text-muted">${minion.lastSeen | dateFormat}</span>
+                        </td>
+                        <td>
+                            ${minion.lastAuthenticated | timeAgo}
+                            <br>
+                            <span class="text-muted">
+                                ${minion.lastAuthenticated | dateFormat}
+                            </span>
+                        </td>
+                        <td>
+                            ${minion.saltMinionVersion | join:'.'}
 
-                    <pagination page.bind="page" count.bind="minions.count" pages.bind="minions.pages"></pagination>
-
-                </div>
+                            <br>
+                            <span class="text-muted">
+                                ${minion.master | join}
+                            </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pagination page.bind="page" count.bind="minions.count" pages.bind="minions.pages"></pagination>
             </div>
         </div>
     </page-container>
