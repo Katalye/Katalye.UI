@@ -24,6 +24,17 @@ export class App {
                 redirect: "minions"
             },
             {
+                route: ["overview"],
+                name: "overview",
+                moduleId: PLATFORM.moduleName("./pages/overview/overview"),
+                nav: true,
+                title: "Overview",
+                breadcrumb: true,
+                settings: {
+                    icon: "fas fa-server"
+                }
+            },
+            {
                 route: ["minions"],
                 name: "minions",
                 moduleId: PLATFORM.moduleName("./pages/minions/minions"),
