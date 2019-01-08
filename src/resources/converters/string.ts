@@ -3,3 +3,9 @@ export class JoinValueConverter {
         return (value || []).join(separator);
     }
 }
+
+export class DefaultValueConverter {
+    public toView(value: string[], defaultValue: string = "-") {
+        return value || defaultValue;
+    }
+}

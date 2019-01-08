@@ -29,3 +29,17 @@ export class BatchValueConverter {
         return result;
     }
 }
+
+export class AnyValueConverter {
+    public toView(value: string[]) {
+        let result = value != null && value.length != 0;
+        return result;
+    }
+}
+
+export class NoneValueConverter {
+    public toView(value: string[]) {
+        let result = value == null || value.length == 0;
+        return result;
+    }
+}
