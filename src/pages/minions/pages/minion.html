@@ -3,17 +3,9 @@
     <div class="minion">
 
         <require from="./components/blade"></require>
+        <require from="./components/minion-job-details/minion-job-details"></require>
         <blade open.bind="open">
-            <div class="p-4">
-                <div class="card">
-                    <div class="card-body bg-dark">
-
-                        <pre class="text-white">> salt ${minion.id} ${selectedJob.function} ${selectedJob.arguments|join:' '}</pre>
-                        <pre class="text-white">${selectedJob.returnData|yaml}</pre>
-
-                    </div>
-                </div>
-            </div>
+            <minion-job-details minion-id.bind="minionId" jid.bind="selectedJobId"></minion-job-details>
         </blade>
 
         <div class="p-4">

@@ -1,0 +1,13 @@
+<template>
+    <div class="p-4">
+        <div class="card" if.bind="!loading">
+            <div class="card-body bg-dark">
+
+                <pre class="text-white">> salt ${minionId} ${job.function} ${job.arguments|join:' '}</pre>
+                <pre class="text-white">${job.returnData|yaml}</pre>
+
+            </div>
+        </div>
+        <loading if.bind="loading"></loading>
+    </div>
+</template>
