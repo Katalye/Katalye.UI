@@ -8,6 +8,7 @@ export function configure(config: FrameworkConfiguration) {
         PLATFORM.moduleName("./components/pagination/pagination"),
         PLATFORM.moduleName("./components/os-icon/os-icon"),
         PLATFORM.moduleName("./components/type-ahead-select/type-ahead-select"),
+        PLATFORM.moduleName("./components/loading/loading"),
         PLATFORM.moduleName("./converters/date-time"),
         PLATFORM.moduleName("./converters/string"),
         PLATFORM.moduleName("./converters/arrays"),
