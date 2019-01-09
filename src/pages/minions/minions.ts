@@ -23,7 +23,6 @@ export class Minions {
                 route: [":minionId"],
                 name: "minion",
                 moduleId: PLATFORM.moduleName("./pages/minion"),
-                title: "Search",
                 breadcrumb: true
             },
         ]);

@@ -1,0 +1,25 @@
+<template>
+
+    <div class="blade ${open ? 'open' : 'close'}" click.delegate="close()">
+
+        <div class="blade-container border-left" click.delegate="stopPropagation($event)">
+
+            <nav class="navbar blade-nav navbar-light bg-white border-bottom">
+                <ul class="navbar-nav mr-auto">
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <button type="button" class="close" aria-label="Close" click.delegate="close()">
+                            <i class="fas fa-times fa-fw"></i>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="blade-body">
+                <slot></slot>
+            </div>
+
+        </div>
+    </div>
+</template>

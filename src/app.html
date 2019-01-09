@@ -1,6 +1,6 @@
 <template>
     <div class="app">
-        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top border-bottom">
+        <nav class="navbar main-nav navbar-expand-lg navbar-light bg-white fixed-top border-bottom">
             <button type="button" class="navbar-toggler mr-2 " data-toggle="offcanvas" title="Toggle responsive left sidebar"
                 click.delegate="toggleSidebar()">
                 <span class="navbar-toggler-icon"></span>
@@ -57,7 +57,9 @@
                 </ul>
             </div>
             <div class="main-container">
-                <router-view></router-view>
+                <div class="scroll-area">
+                    <router-view></router-view>
+                </div>
             </div>
         </div>
     </div>

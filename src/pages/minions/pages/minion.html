@@ -1,49 +1,113 @@
 <template>
-    <!-- <page-control>
-        <div class="row">
 
-            <div class="col-3">
-                <div class="form-group">
-                    <label for="formGroupExampleInput">Example label</label>
-                    <select class="custom-select">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+    <div class="minion">
+
+        <require from="./components/blade"></require>
+        <blade open.bind="open">
+            <div class="p-4">
+                <div class="card">
+                    <div class="card-body bg-dark">
+
+                        <pre class="text-white">> salt ${minion.id} ${selectedJob.function} ${selectedJob.arguments|join:' '}</pre>
+                        <pre class="text-white">${selectedJob.returnData|yaml}</pre>
+
+                    </div>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="form-group">
-                    <label for="formGroupExampleInput">Example label</label>
-                    <select class="custom-select">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+        </blade>
+
+        <div class="p-4">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="text-muted">Minion</div>
+                            <h2 class="font-weight-light">${minion.id}</h2>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="text-muted">Operating System</div>
+                                    <div>${minion.grains['osfullname']|default}</div>
+                                </div>
+                                <div class="col">
+                                    <div class="text-muted">Master</div>
+                                    <div>${minion.grains['master']|default}</div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="text-muted">IPv4 Addresses</div>
+                                    <div>
+                                        <div repeat.for="ip of minion.grains['ipv4']|remove:'127\.0\.0\.1'|chunk:1">
+                                            ${ip}
+                                        </div>
+                                        <div if.bind="minion.grains['ipv4']|remove:'127\.0\.0\.1'|none">
+                                            -
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="text-muted">IPv6 Addresses</div>
+                                    <div>
+                                        <div repeat.for="ip of minion.grains['ipv6']|remove:'::1'|remove:'fe80:'|chunk:1">
+                                            ${ip}
+                                        </div>
+                                        <div if.bind="minion.grains['ipv6']|remove:'::1'|remove:'fe80:'|none">
+                                            -
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-3">
-                <div class="form-group">
-                    <label for="formGroupExampleInput">Example label</label>
-                    <select class="custom-select">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+
+            <div class="row pt-4">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body p-0">
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col"></th>
+                                        <th scope="col">Job ID</th>
+                                        <th scope="col">Completion</th>
+                                        <th scope="col">Function</th>
+                                    </tr>
+                                </thead>
+                                <tr repeat.for="job of jobs.result" click.delegate="selectJob(job.jid)">
+                                    <td class="pl-4">
+                                        <template if.bind="job.success">
+                                            <i class="fas fa-check text-success"></i>
+                                        </template>
+                                        <template if.bind="!job.success">
+                                            <i class="fas fa-times text-error"></i>
+                                        </template>
+                                    </td>
+                                    <td>
+                                        <a href="#">${job.jid}</a>
+                                    </td>
+                                    <td>${job.function}</td>
+                                    <td>
+                                        ${job.returnedOn|timeAgo}
+                                        <br>
+                                        ${job.returnedOn|dateFormat}
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <pagination page.bind="jobPage" count.bind="jobs.count" pages.bind="jobs.pages"></pagination>
+
+                        </div>
+                    </div>
                 </div>
+
             </div>
         </div>
-    </page-control> -->
-    <page-container>
-        <div class="row">
-            <div class="col mt-3">
-                <p class="lead d-none d-sm-block">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
 
-                ${minionId}
-            </div>
-        </div>
-    </page-container>
 </template>

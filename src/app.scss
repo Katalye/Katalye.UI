@@ -11,31 +11,33 @@ $sidebar-width: 200px;
 .app {
     padding-top: 56px;
     height: 100%;
-    .navbar {
-        padding: 0;
-        .crumbs {
-            font-weight: 400;
-            font-size: 1.1em;
-            .nav-item {
-                padding: 0;
-                .nav-link {
+    .main-nav {
+        &.navbar {
+            padding: 0;
+            .crumbs {
+                font-weight: 400;
+                font-size: 1.1em;
+                .nav-item {
                     padding: 0;
-                    &.separator {
-                        margin-top: -2px;
-                        margin-right: 3px;
-                        margin-left: 3px;
+                    .nav-link {
+                        padding: 0;
+                        &.separator {
+                            margin-top: -2px;
+                            margin-right: 3px;
+                            margin-left: 3px;
+                        }
                     }
                 }
             }
-        }
-        .navbar-brand {
-            width: $sidebar-width;
-            height: 56px;
-            padding: 0;
-            font-weight: 500;
-        }
-        .nav-item {
-            padding: 0.5em 0.5em;
+            .navbar-brand {
+                width: $sidebar-width;
+                height: 56px;
+                padding: 0;
+                font-weight: 500;
+            }
+            .nav-item {
+                padding: 0.5em 0.5em;
+            }
         }
     }
     .workspace {
@@ -49,6 +51,7 @@ $sidebar-width: 200px;
             position: relative;
             overflow-y: auto;
             overflow-x: hidden;
+            z-index: 20;
             &.active {}
             .nav-item {
                 border-left: 3px solid $body-bg;
@@ -69,7 +72,12 @@ $sidebar-width: 200px;
         }
         .main-container {
             height: 100%;
-            overflow: auto;
+            .scroll-area {
+                height: 100%;
+                overflow: auto;
+            }
+            overflow-x: hidden;
+            position: relative;
         }
     }
 }
