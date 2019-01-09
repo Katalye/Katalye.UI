@@ -1,0 +1,21 @@
+.state {
+    .list-group-item {
+        border-left: 8px solid;
+        &.success {
+            border-left-color: $brand-success;
+        }
+        &.failed {
+            border-left-color: $brand-danger;
+        }
+        .header {
+            max-width: 60%;
+        }
+        .comment {
+            max-width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: block;
+        }
+    }
+}

@@ -1,4 +1,5 @@
-import { bindable, autoinject } from "aurelia-framework";
+import "./minion-job-details.scss";
+import { bindable, autoinject, computedFrom } from "aurelia-framework";
 import { Mediator } from "../../../../../services/mediator";
 import { GetMinionJob } from "../../../../../services/queries/get-minion-job";
 
@@ -16,18 +17,34 @@ export class MinionJobDetails {
 
     public job: GetMinionJob.Result;
 
+    @computedFrom("job.function")
+    public get type() {
+        if (!this.job) {
+            return "default";
+        }
+        switch (this.job.function) {
+            case "state.highstate":
+            case "state.apply":
+                return "state";
+            default:
+                return "default";
+        }
+    }
+
     public constructor(mediator: Mediator) {
         this.mediator = mediator;
     }
 
     public async refresh() {
         this.loading = true;
-        this.job = await this.mediator
-            .for(GetMinionJob.Request)
-            .handle<GetMinionJob.Result>({
-                id: this.minionId,
-                jid: this.jid
-            });
+        if (this.minionId && this.jid) {
+            this.job = await this.mediator
+                .for(GetMinionJob.Request)
+                .handle<GetMinionJob.Result>({
+                    id: this.minionId,
+                    jid: this.jid
+                });
+        }
         this.loading = false;
     }
 }

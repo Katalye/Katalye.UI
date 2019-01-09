@@ -4,7 +4,6 @@ import { autoinject, bindable } from "aurelia-framework";
 import { Router } from "aurelia-router";
 import { GetMinion } from "../../../services/queries/get-minion";
 import { GetMinionJobs } from "../../../services/queries/get-minion-jobs";
-import { GetMinionJob } from "../../../services/queries/get-minion-job";
 
 @autoinject
 export class Minion {
@@ -21,7 +20,7 @@ export class Minion {
 
     @bindable
     public selectedJobId: string;
-    public selectedJob: GetMinionJob.Result;
+    public selectedJob: GetMinionJobs.Model;
 
     public open: boolean;
 
@@ -60,17 +59,9 @@ export class Minion {
         }
     }
 
-    public selectJob(jid: string) {
+    public selectJob(jid: string, index: number) {
         this.open = true;
         this.selectedJobId = jid;
-    }
-
-    public async selectedJobIdChanged() {
-        this.selectedJob = await this.mediator
-            .for(GetMinionJob.Request)
-            .handle<GetMinionJob.Result>({
-                id: this.minionId,
-                jid: this.selectedJobId
-            });
+        this.selectedJob = this.jobs.result[index];
     }
 }

@@ -11,3 +11,9 @@ export class TimeAgoValueConverter {
         return moment(value).fromNow(withoutSuffix);
     }
 }
+
+export class DurationValueConverter {
+    public toView(value: number, format: string = "mm:ss.SSS") {
+        return moment.utc(value).format(format);
+    }
+}

@@ -5,6 +5,13 @@
         <require from="./components/blade"></require>
         <require from="./components/minion-job-details/minion-job-details"></require>
         <blade open.bind="open">
+            <span slot="title">
+                <div>
+                    <li class="nav-item">
+                        Module: ${selectedJob.function}
+                    </li>
+                </div>
+            </span>
             <minion-job-details minion-id.bind="minionId" jid.bind="selectedJobId"></minion-job-details>
         </blade>
 
@@ -68,11 +75,11 @@
                                     <tr>
                                         <th scope="col"></th>
                                         <th scope="col">Job ID</th>
-                                        <th scope="col">Completion</th>
                                         <th scope="col">Function</th>
+                                        <th scope="col">Completion</th>
                                     </tr>
                                 </thead>
-                                <tr repeat.for="job of jobs.result" click.delegate="selectJob(job.jid)">
+                                <tr repeat.for="job of jobs.result" click.delegate="selectJob(job.jid, $index)" class="clickable">
                                     <td class="pl-4">
                                         <template if.bind="job.success">
                                             <i class="fas fa-check text-success"></i>
