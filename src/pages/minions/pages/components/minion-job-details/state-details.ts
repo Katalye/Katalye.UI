@@ -24,6 +24,7 @@ export class StateDetails {
                         id: value.__id__ || id,
                         function: `${functionModule}.${functionMethod}`,
                         changes: value.changes,
+                        hasChanges: !!value.changes && Object.keys(value.changes).length != 0,
                         comment: value.comment,
                         duration: value.duration,
                         name: value.name || name,
@@ -47,7 +48,8 @@ export class StateDetails {
 export class StateProgress {
     public id: string;
     public function: string;
-    public changes: string;
+    public changes: any;
+    public hasChanges: boolean;
     public comment: string;
     public duration: number;
     public name: string;
