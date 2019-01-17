@@ -17,7 +17,6 @@ const webpackConfig = {
         chunkFilename: '[name].chunk.js'
     },
     devtool: 'source-map',
-    watch: true,
     module: {
         rules: [
             {
