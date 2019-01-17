@@ -1,4 +1,4 @@
-version: 1.0.{build}-ci
+version: 0.0.{build}-ci
 image: Ubuntu
 environment:
   DOCKER_USERNAME:

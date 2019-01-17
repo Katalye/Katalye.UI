@@ -30,5 +30,3 @@ if ($Push)
         docker push ${image}:latest
     }
 }
-
-

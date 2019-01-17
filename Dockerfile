@@ -8,7 +8,8 @@ RUN set -xe \
     && cd /src \
     && yarn install
 
-COPY ./ /src/
+COPY ./* /src/
+COPY ./src/ /src/src/
 
 RUN set -xe \
     && cd /src \
@@ -18,4 +19,5 @@ FROM nginx:alpine AS publish
 
 LABEL maintainer="Katalye (github.com/Katalye)"
 
+COPY ./docker/rootfs/ /
 COPY --from=build /src/dist/ /usr/share/nginx/html
