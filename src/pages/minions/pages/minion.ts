@@ -22,7 +22,7 @@ export class Minion {
     public selectedJobId: string;
     public selectedJob: GetMinionJobs.Model;
 
-    public open: boolean;
+    public open: boolean = false;
 
     public constructor(router: Router, mediator: Mediator) {
         this.router = router;

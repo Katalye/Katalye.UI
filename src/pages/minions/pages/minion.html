@@ -77,6 +77,7 @@
                                         <th scope="col">Job ID</th>
                                         <th scope="col">Function</th>
                                         <th scope="col">Completion</th>
+                                        <th scope="col">Status</th>
                                     </tr>
                                 </thead>
                                 <tr repeat.for="job of jobs.result" click.delegate="selectJob(job.jid, $index)" class="clickable">
@@ -96,6 +97,22 @@
                                         ${job.returnedOn|timeAgo}
                                         <br>
                                         ${job.returnedOn|dateFormat}
+                                    </td>
+                                    <td>
+                                        <template if.bind="job.changedCount != -1">
+                                            <span class="border border-danger rounded px-2 py-1 mx-1" if.bind="job.failedCount">
+                                                ${job.failedCount} failed
+                                            </span>
+                                            <span class="border border-warning rounded px-2 py-1 mx-1" if.bind="job.changedCount">
+                                                ${job.changedCount} changed
+                                            </span>
+                                            <span class="border border-success rounded px-2 py-1 mx-1" if.bind="job.successCount">
+                                                ${job.successCount} succeeded
+                                            </span>
+                                        </template>
+                                        <!-- <span class="badge badge-success"></span>
+                                        / <span class="badge badge-danger">${job.failedCount}</span>
+                                        / <span class="badge badge-warning">${job.changedCount}</span> -->
                                     </td>
                                 </tr>
                                 </tbody>
