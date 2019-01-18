@@ -1,10 +1,30 @@
 <template>
+
+    <div class="row mb-2">
+        <div class="col-auto mr-auto">
+
+        </div>
+        <div class="col-auto">
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <template repeat.for="state of ['full', 'changes', 'failed']" class="btn btn-secondary ">
+                    <button type="button" class="btn btn-secondary ${state == selectedState ? 'active':''} text-capitalize"
+                        click.delegate="selectState(state)">
+                        ${state}
+                    </button>
+                </template>
+            </div>
+
+        </div>
+    </div>
+
     <div class="card state">
+
         <ul class="list-group list-group-flush">
             <template repeat.for="prog of data">
                 <li class="list-group-item d-flex flex-column ${prog.result ? 'success' : 'failed'} ${prog.hasChanges ? 'changed' : ''} p-0">
 
-                    <div class="d-flex align-items-center m-3">
+                    <div class="d-flex align-items-center m-3" if.bind="prog.hasChanges || !prog.result || selectedState != 'changes'">
                         <div class="mr-auto header">
                             ${prog.id}
                             <br>
@@ -19,9 +39,19 @@
                         </div>
                     </div>
 
+                    <div class="d-flex align-items-center m-1 pl-2" if.bind="!prog.hasChanges && prog.result && selectedState == 'changes'">
+                        <div class="mr-auto">
+                            ${prog.id}
+                        </div>
+                    </div>
+
                     <div class="bg-dark changes pr-2 py-2 pl-4" if.bind="prog.hasChanges">
                         <pre class="text-white mb-0">changes:</pre>
                         <pre class="text-white mb-0 ml-3">${prog.changes|yaml}</pre>
+                    </div>
+                    <div class="bg-dark changes pr-2 py-2 pl-4" if.bind="!prog.result">
+                        <pre class="text-white mb-0">comment:</pre>
+                        <pre class="text-white mb-0 ml-3">${prog.comment|yaml}</pre>
                     </div>
 
                 </li>

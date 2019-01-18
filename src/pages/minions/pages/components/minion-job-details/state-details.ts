@@ -5,9 +5,16 @@ export class StateDetails {
     @bindable
     public job: GetMinionJob.Result;
 
-    @computedFrom("job.returnData")
+    public selectedState: string = "full";
+
+    @computedFrom("job.returnData", "selectedState")
     public get data() {
         let result: StateProgress[] = [];
+
+        if (this.job.returnData instanceof Array) {
+            // TODO Handle bad state request.
+            return [];
+        }
 
         for (let key in this.job.returnData) {
             if (this.job.returnData.hasOwnProperty(key)) {
@@ -41,7 +48,24 @@ export class StateDetails {
             }
         }
 
-        return result.sort((a, b) => 0 - (a.runNumber < b.runNumber ? 1 : -1));
+        return result
+            .filter(x => this.filterByState(x))
+            .sort((a, b) => 0 - (a.runNumber < b.runNumber ? 1 : -1));
+    }
+
+    private filterByState(state: StateProgress) {
+        if (this.selectedState == "changes") {
+            return true;
+        }
+        if (this.selectedState == "failed") {
+            return !state.result;
+        }
+
+        return true;
+    }
+
+    public selectState(state: string) {
+        this.selectedState = state;
     }
 }
 
