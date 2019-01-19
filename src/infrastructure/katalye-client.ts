@@ -2,17 +2,12 @@ import { autoinject, buildQueryString } from "aurelia-framework";
 import { HttpClient } from "aurelia-fetch-client";
 import { getLogger } from "aurelia-logging";
 
-
-
 @autoinject
 export class KatalyeClient {
 
     private logger = getLogger("katalye-client");
 
     private client: HttpClient;
-    private method: string = "GET";
-    private path: string;
-    private query: string;
 
     public constructor(client: HttpClient) {
         this.client = client;
@@ -33,8 +28,21 @@ export class KatalyeClient {
     }
 
     public withPath(path: string) {
-        this.path = path;
-        return this;
+        return new KatalyeClientImpl(path, this.client);
+    }
+}
+
+export class KatalyeClientImpl {
+
+    private client: HttpClient;
+
+    private method: string = "GET";
+    private path: string;
+    private query: string;
+
+    public constructor(page: string, client: HttpClient) {
+        this.path = page;
+        this.client = client;
     }
 
     public withMethod(method: "POST" | "GET" | "PUT" | "DELETE") {
