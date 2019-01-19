@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-body p-0">
 
-                    <div class="table-responsive">
+                    <div class="table-responsive" if.bind="!loading">
                         <table class="table job-list">
                             <thead>
                                 <tr>
@@ -57,6 +57,9 @@
                         </table>
                     </div>
 
+                    <div if.bind="loading" class="py-4">
+                        <loading></loading>
+                    </div>
 
                     <pagination page.bind="jobPage" count.bind="jobs.count" pages.bind="jobs.pages"></pagination>
 

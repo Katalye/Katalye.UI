@@ -23,6 +23,8 @@ export class MinionJobs {
     @observable
     public open: boolean = false;
 
+    public loading: boolean = true;
+
     public constructor(router: Router, mediator: Mediator) {
         this.router = router;
         this.mediator = mediator;
@@ -42,12 +44,14 @@ export class MinionJobs {
 
     public async jobPageChanged() {
         if (this.mediator) {
+            this.loading = true;
             this.jobs = await this.mediator
                 .for(GetMinionJobs.Request)
                 .handle<GetMinionJobs.Result>({
                     id: this.minionId,
                     page: this.jobPage
                 });
+            this.loading = false;
         }
     }
 
