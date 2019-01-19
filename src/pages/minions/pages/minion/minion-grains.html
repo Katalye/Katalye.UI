@@ -1,3 +1,32 @@
 <template>
+    <div class="row pt-4">
+        <div class="col">
+            <div class="card">
+                <div class="card-body p-0">
 
+                        <table class="table grain-list">
+                            <thead>
+                                <tr>
+                                    <th class="pl-4" scope="col">Name</th>
+                                    <th scope="col">Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr repeat.for="[key, values] of minion.grains | iterable">
+                                    <td class="shrink pl-4">
+                                        <span class="text-muted">${minionId} / </span> ${key}
+                                    </td>
+                                    <td class="expand values f-flex">
+                                        <template repeat.for="value of values | removeBlank">
+                                            <pre class="bg-dark text-light px-2 py-1 rounded m-0 value" title.bind="value">${value}</pre>
+                                        </template>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </template>

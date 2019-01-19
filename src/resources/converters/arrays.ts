@@ -5,6 +5,12 @@ export class RemoveValueConverter {
     }
 }
 
+export class RemoveBlankValueConverter {
+    public toView(value: string[]) {
+        return (value || []).filter(x => x);
+    }
+}
+
 export class ChunkValueConverter {
     public toView(value: string[], size: number) {
         value = value || [];
@@ -41,5 +47,23 @@ export class NoneValueConverter {
     public toView(value: string[]) {
         let result = value == null || value.length == 0;
         return result;
+    }
+}
+
+export class ObjectKeysValueConverter {
+    /// https://stackoverflow.com/a/43139653/2001966
+    public toView(obj: any) {
+        // Create a temporary array to populate with object keys
+        let temp = [];
+
+        // A basic for..in loop to get object properties
+        // https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/for...in
+        for (let prop in obj) {
+            if (obj.hasOwnProperty(prop)) {
+                temp.push(obj[prop]);
+            }
+        }
+
+        return temp;
     }
 }

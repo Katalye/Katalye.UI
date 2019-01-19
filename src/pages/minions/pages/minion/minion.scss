@@ -43,4 +43,14 @@
             }
         }
     }
+    .grain-list {
+        td.values {
+            .value {
+                max-width: 400px;
+                display: inline-block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        }
+    }
 }
