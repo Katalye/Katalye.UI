@@ -1,0 +1,65 @@
+<template>
+
+    <div class="minion">
+
+        <page-control>
+
+            <div class="details p-2">
+                <div class="text-muted">Minion</div>
+                <h2 class="font-weight-light">${minion.id}</h2>
+
+                <div class="row mt-2">
+                    <div class="col">
+                        <div class="text-muted">Operating System</div>
+                        <div>${minion.grains['osfullname']|default}</div>
+                    </div>
+                    <div class="col">
+                        <div class="text-muted">Master</div>
+                        <div>${minion.grains['master']|default}</div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col">
+                        <div class="text-muted">IPv4 Addresses</div>
+                        <div>
+                            <div repeat.for="ip of minion.grains['ipv4']|remove:'127\.0\.0\.1'|chunk:1">
+                                ${ip}
+                            </div>
+                            <div if.bind="minion.grains['ipv4']|remove:'127\.0\.0\.1'|none">
+                                -
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-muted">IPv6 Addresses</div>
+                        <div>
+                            <div repeat.for="ip of minion.grains['ipv6']|remove:'::1'|remove:'fe80:'|chunk:1">
+                                ${ip}
+                            </div>
+                            <div if.bind="minion.grains['ipv6']|remove:'::1'|remove:'fe80:'|none">
+                                -
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+
+            <ul class="nav pt-4">
+                <li class="nav-item ${currentRoute == 'minion-jobs' ? 'active' : ''}">
+                    <a class="nav-link" route-href="route: minion-jobs;">Jobs (${jobs.count || 0})</a>
+                </li>
+                <li class="nav-item ${currentRoute == 'minion-grains' ? 'active' : ''}">
+                    <a class="nav-link" route-href="route: minion-grains;">Grains (${grainsCount})</a>
+                </li>
+            </ul>
+
+        </page-control>
+
+        <div class="px-4 pt-0 pb-4">
+            <router-view></router-view>
+        </div>
+
+</template>
