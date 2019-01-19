@@ -15,6 +15,9 @@ export class OsIcon {
         if (os == "ubuntu") {
             return "fo-ubuntu";
         }
+        if (os == "centos") {
+            return "fo-centos";
+        }
         return "far fa-question-circle";
     }
 }
