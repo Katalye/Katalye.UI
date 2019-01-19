@@ -56,7 +56,7 @@ export class Minion {
         config.map([
             {
                 route: [""],
-                redirect: "grains"
+                redirect: "jobs"
             },
             {
                 route: ["jobs/:jobId?"],

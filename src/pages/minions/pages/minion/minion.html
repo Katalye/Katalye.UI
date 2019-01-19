@@ -48,11 +48,15 @@
             </div>
 
             <ul class="nav pt-4">
-                <li class="nav-item ${currentRoute == 'minion-jobs' ? 'active' : ''}">
-                    <a class="nav-link" route-href="route: minion-jobs;">Jobs (${jobCount || 0})</a>
+                <li class="nav-item">
+                    <a class="nav-link ${currentRoute == 'minion-jobs' ? 'active' : ''}" route-href="route: minion-jobs;">
+                        Jobs (${jobCount || 0})
+                    </a>
                 </li>
-                <li class="nav-item ${currentRoute == 'minion-grains' ? 'active' : ''}">
-                    <a class="nav-link" route-href="route: minion-grains;">Grains (${grainsCount})</a>
+                <li class="nav-item">
+                    <a class="nav-link ${currentRoute == 'minion-grains' ? 'active' : ''}" route-href="route: minion-grains;">
+                        Grains (${grainsCount})
+                    </a>
                 </li>
             </ul>
 
