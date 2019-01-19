@@ -1,6 +1,6 @@
 import "./minion.scss";
 import { Mediator } from "./../../../services/mediator";
-import { autoinject, bindable, observable } from "aurelia-framework";
+import { autoinject, bindable, observable, computedFrom } from "aurelia-framework";
 import { Router } from "aurelia-router";
 import { GetMinion } from "../../../services/queries/get-minion";
 import { GetMinionJobs } from "../../../services/queries/get-minion-jobs";
@@ -73,5 +73,13 @@ export class Minion {
         if (!this.open) {
             this.selectedJobId = null;
         }
+    }
+
+    @computedFrom("minion", "minion.grains")
+    public get grainsCount() {
+        if (this.minion && this.minion.grains) {
+            return Object.keys(this.minion.grains).length;
+        }
+        return 0;
     }
 }

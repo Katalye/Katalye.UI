@@ -15,106 +15,122 @@
             <minion-job-details minion-id.bind="minionId" jid.bind="selectedJobId"></minion-job-details>
         </blade>
 
-        <div class="p-4">
-            <div class="row">
+        <page-control>
+
+            <div class="details p-2">
+                <div class="text-muted">Minion</div>
+                <h2 class="font-weight-light">${minion.id}</h2>
+
+                <div class="row mt-2">
+                    <div class="col">
+                        <div class="text-muted">Operating System</div>
+                        <div>${minion.grains['osfullname']|default}</div>
+                    </div>
+                    <div class="col">
+                        <div class="text-muted">Master</div>
+                        <div>${minion.grains['master']|default}</div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col">
+                        <div class="text-muted">IPv4 Addresses</div>
+                        <div>
+                            <div repeat.for="ip of minion.grains['ipv4']|remove:'127\.0\.0\.1'|chunk:1">
+                                ${ip}
+                            </div>
+                            <div if.bind="minion.grains['ipv4']|remove:'127\.0\.0\.1'|none">
+                                -
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-muted">IPv6 Addresses</div>
+                        <div>
+                            <div repeat.for="ip of minion.grains['ipv6']|remove:'::1'|remove:'fe80:'|chunk:1">
+                                ${ip}
+                            </div>
+                            <div if.bind="minion.grains['ipv6']|remove:'::1'|remove:'fe80:'|none">
+                                -
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+
+            <ul class="nav pt-4">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Jobs (${jobs.count || 0})</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Grains (${grainsCount})</a>
+                </li>
+            </ul>
+
+        </page-control>
+
+        <div class="px-4 pt-0 pb-4">
+            <!-- <div class="row">
                 <div class="col-6">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body pb-0">
 
-                            <div class="text-muted">Minion</div>
-                            <h2 class="font-weight-light">${minion.id}</h2>
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="text-muted">Operating System</div>
-                                    <div>${minion.grains['osfullname']|default}</div>
-                                </div>
-                                <div class="col">
-                                    <div class="text-muted">Master</div>
-                                    <div>${minion.grains['master']|default}</div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col">
-                                    <div class="text-muted">IPv4 Addresses</div>
-                                    <div>
-                                        <div repeat.for="ip of minion.grains['ipv4']|remove:'127\.0\.0\.1'|chunk:1">
-                                            ${ip}
-                                        </div>
-                                        <div if.bind="minion.grains['ipv4']|remove:'127\.0\.0\.1'|none">
-                                            -
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="text-muted">IPv6 Addresses</div>
-                                    <div>
-                                        <div repeat.for="ip of minion.grains['ipv6']|remove:'::1'|remove:'fe80:'|chunk:1">
-                                            ${ip}
-                                        </div>
-                                        <div if.bind="minion.grains['ipv6']|remove:'::1'|remove:'fe80:'|none">
-                                            -
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
 
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="row pt-4">
                 <div class="col">
                     <div class="card">
-                        <div class="card-body p-0 table-responsive">
+                        <div class="card-body p-0">
 
-                            <table class="table job-list">
-                                <thead>
-                                    <tr>
-                                        <th class="pl-4" scope="col">Job ID</th>
-                                        <th scope="col">Competition</th>
-                                        <th scope="col">Function</th>
-                                        <th scope="col">Status</th>
+                            <div class="table-responsive">
+                                <table class="table job-list">
+                                    <thead>
+                                        <tr>
+                                            <th class="pl-4" scope="col">Job ID</th>
+                                            <th scope="col">Competition</th>
+                                            <th scope="col">Function</th>
+                                            <th scope="col">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tr repeat.for="job of jobs.result" click.delegate="selectJob(job.jid, $index)"
+                                        class="clickable">
+                                        <td class="shrink pl-4 status ${job.returnCode == 0 ? 'success':'failed'}">
+                                            <span class="text-muted">${minionId} / </span><a href="#">${job.jid}</a>
+                                        </td>
+                                        <td class="shrink">
+                                            ${job.returnedOn|timeAgo}
+                                            <br>
+                                            <span class="text-muted">${job.returnedOn|dateFormat}</span>
+                                        </td>
+                                        <td class="expand">
+                                            <pre class="bg-dark text-light py-1 px-2 rounded m-0 mr-auto">> ${job.function}</pre>
+                                        </td>
+                                        <td class="shrink">
+                                            <template if.bind="job.changedCount != -1">
+                                                <span class="border border-danger rounded px-2 py-1 mx-1" if.bind="job.failedCount">
+                                                    ${job.failedCount} failed
+                                                </span>
+                                                <span class="border border-warning rounded px-2 py-1 mx-1" if.bind="job.changedCount">
+                                                    ${job.changedCount} changed
+                                                </span>
+                                                <span class="border border-success rounded px-2 py-1 mx-1" if.bind="job.successCount">
+                                                    ${job.successCount} succeeded
+                                                </span>
+                                            </template>
+                                        </td>
                                     </tr>
-                                </thead>
-                                <tr repeat.for="job of jobs.result" click.delegate="selectJob(job.jid, $index)" class="clickable">
-                                    <!-- <td class="pl-4">
-                                        <template if.bind="job.success">
-                                            <i class="fas fa-check text-success"></i>
-                                        </template>
-                                        <template if.bind="!job.success">
-                                            <i class="fas fa-times text-error"></i>
-                                        </template>
-                                    </td> -->
-                                    <td class="shrink pl-4 status ${job.returnCode == 0 ? 'success':'failed'}">
-                                        <span class="text-muted">${minionId} / </span><a href="#">${job.jid}</a>
-                                    </td>
-                                    <td class="shrink">
-                                        ${job.returnedOn|timeAgo}
-                                        <br>
-                                        <span class="text-muted">${job.returnedOn|dateFormat}</span>
-                                    </td>
-                                    <td class="expand">
-                                        <pre class="bg-dark text-light py-1 px-2 rounded m-0">> ${job.function}</pre>
-                                    </td>
-                                    <td class="shrink">
-                                        <template if.bind="job.changedCount != -1">
-                                            <span class="border border-danger rounded px-2 py-1 mx-1" if.bind="job.failedCount">
-                                                ${job.failedCount} failed
-                                            </span>
-                                            <span class="border border-warning rounded px-2 py-1 mx-1" if.bind="job.changedCount">
-                                                ${job.changedCount} changed
-                                            </span>
-                                            <span class="border border-success rounded px-2 py-1 mx-1" if.bind="job.successCount">
-                                                ${job.successCount} succeeded
-                                            </span>
-                                        </template>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
+
+
                             <pagination page.bind="jobPage" count.bind="jobs.count" pages.bind="jobs.pages"></pagination>
 
                         </div>
