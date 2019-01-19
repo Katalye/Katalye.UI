@@ -1,6 +1,6 @@
 import "./minion.scss";
 import { Mediator } from "./../../../services/mediator";
-import { autoinject, bindable } from "aurelia-framework";
+import { autoinject, bindable, observable } from "aurelia-framework";
 import { Router } from "aurelia-router";
 import { GetMinion } from "../../../services/queries/get-minion";
 import { GetMinionJobs } from "../../../services/queries/get-minion-jobs";
@@ -14,14 +14,14 @@ export class Minion {
 
     public minion: GetMinion.Result;
 
-    @bindable
+    @observable
     public jobPage: number = 1;
     public jobs: GetMinionJobs.Result;
 
-    @bindable
+    @observable
     public selectedJobId: string;
-    public selectedJob: GetMinionJobs.Model;
 
+    @observable
     public open: boolean = false;
 
     public constructor(router: Router, mediator: Mediator) {
@@ -32,6 +32,11 @@ export class Minion {
     public async activate(params: any) {
         params = params || {};
         this.minionId = params.minionId;
+        this.selectedJobId = params.jobId;
+
+        if (params.jobId) {
+            this.selectJob(params.jobId);
+        }
 
         this.minion = await this.mediator
             .for(GetMinion.Request)
@@ -53,15 +58,20 @@ export class Minion {
                 id: this.minionId,
                 page: this.jobPage
             });
-
-        if (!this.selectedJobId && this.jobs.result.length > 0) {
-            this.selectedJobId = this.jobs.result[0].jid;
-        }
     }
 
-    public selectJob(jid: string, index: number) {
-        this.open = true;
+    public async selectJob(jid: string) {
         this.selectedJobId = jid;
-        this.selectedJob = this.jobs.result[index];
+    }
+
+    public async selectedJobIdChanged() {
+        await this.router.navigateToRoute("minion", { minionId: this.minionId, jobId: this.selectedJobId }, { replace: true });
+        this.open = !!this.selectedJobId;
+    }
+
+    public async openChanged() {
+        if (!this.open) {
+            this.selectedJobId = null;
+        }
     }
 }

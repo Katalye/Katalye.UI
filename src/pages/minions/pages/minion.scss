@@ -1,5 +1,26 @@
 .minion {
     .clickable {
         cursor: pointer;
+        &:hover {
+            background-color: lighten($color: $gray-lighter, $amount: 2%);
+            transition: background-color 200ms ease-in-out;
+        }
+    }
+    table td.shrink {
+        white-space: nowrap
+    }
+    table td.expand {
+        width: 99%
+    }
+    .job-list {
+        .status {
+            border-left: black 10px solid;
+            &.success {
+                border-left-color: $success;
+            }
+            &.failed {
+                border-left-color: $danger;
+            }
+        }
     }
 }

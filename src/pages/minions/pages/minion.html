@@ -7,8 +7,8 @@
         <blade open.bind="open">
             <span slot="title">
                 <div>
-                    <li class="nav-item">
-                        Module: ${selectedJob.function}
+                    <li class="nav-item" if.bind="selectedJobId">
+                        <span class="text-muted">${minionId} / </span> ${selectedJobId}
                     </li>
                 </div>
             </span>
@@ -68,37 +68,38 @@
             <div class="row pt-4">
                 <div class="col">
                     <div class="card">
-                        <div class="card-body p-0">
+                        <div class="card-body p-0 table-responsive">
 
-                            <table class="table">
+                            <table class="table job-list">
                                 <thead>
                                     <tr>
-                                        <th scope="col"></th>
-                                        <th scope="col">Job ID</th>
+                                        <th class="pl-4" scope="col">Job ID</th>
+                                        <th scope="col">Competition</th>
                                         <th scope="col">Function</th>
-                                        <th scope="col">Completion</th>
                                         <th scope="col">Status</th>
                                     </tr>
                                 </thead>
                                 <tr repeat.for="job of jobs.result" click.delegate="selectJob(job.jid, $index)" class="clickable">
-                                    <td class="pl-4">
+                                    <!-- <td class="pl-4">
                                         <template if.bind="job.success">
                                             <i class="fas fa-check text-success"></i>
                                         </template>
                                         <template if.bind="!job.success">
                                             <i class="fas fa-times text-error"></i>
                                         </template>
+                                    </td> -->
+                                    <td class="shrink pl-4 status ${job.returnCode == 0 ? 'success':'failed'}">
+                                        <span class="text-muted">${minionId} / </span><a href="#">${job.jid}</a>
                                     </td>
-                                    <td>
-                                        <a href="#">${job.jid}</a>
-                                    </td>
-                                    <td>${job.function}</td>
-                                    <td>
+                                    <td class="shrink">
                                         ${job.returnedOn|timeAgo}
                                         <br>
-                                        ${job.returnedOn|dateFormat}
+                                        <span class="text-muted">${job.returnedOn|dateFormat}</span>
                                     </td>
-                                    <td>
+                                    <td class="expand">
+                                        <pre class="bg-dark text-light py-1 px-2 rounded m-0">> ${job.function}</pre>
+                                    </td>
+                                    <td class="shrink">
                                         <template if.bind="job.changedCount != -1">
                                             <span class="border border-danger rounded px-2 py-1 mx-1" if.bind="job.failedCount">
                                                 ${job.failedCount} failed
@@ -110,9 +111,6 @@
                                                 ${job.successCount} succeeded
                                             </span>
                                         </template>
-                                        <!-- <span class="badge badge-success"></span>
-                                        / <span class="badge badge-danger">${job.failedCount}</span>
-                                        / <span class="badge badge-warning">${job.changedCount}</span> -->
                                     </td>
                                 </tr>
                                 </tbody>

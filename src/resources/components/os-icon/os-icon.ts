@@ -8,6 +8,7 @@ export class OsIcon {
 
     @computedFrom("os")
     public get iconClass() {
+        // TODO https://github.com/saltstack/salt/blob/develop/salt/grains/core.py#L1586
         let os = this.os.toLowerCase();
         if (os == "windows") {
             return "fo-win10";
