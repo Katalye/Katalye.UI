@@ -1,4 +1,5 @@
 import { FrameworkConfiguration, PLATFORM } from "aurelia-framework";
+import { configureRepeatStrategies } from "./plugins/aurelia-repeat-strategies";
 
 export function configure(config: FrameworkConfiguration) {
     config.globalResources([
@@ -11,6 +12,9 @@ export function configure(config: FrameworkConfiguration) {
         PLATFORM.moduleName("./components/loading/loading"),
         PLATFORM.moduleName("./converters/date-time"),
         PLATFORM.moduleName("./converters/string"),
-        PLATFORM.moduleName("./converters/arrays"),
+        PLATFORM.moduleName("./converters/arrays")
     ]);
+
+    configureRepeatStrategies(config);
+    config.globalResources(PLATFORM.moduleName("./plugins/aurelia-repeat-strategies/iterable-value-converter"));
 }
