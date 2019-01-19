@@ -3,6 +3,7 @@ import { Mediator } from "./../../../../services/mediator";
 import { autoinject, computedFrom, PLATFORM } from "aurelia-framework";
 import { Router, RouterConfiguration } from "aurelia-router";
 import { GetMinion } from "../../../../services/queries/get-minion";
+import { GetMinionJobs } from "../../../../services/queries/get-minion-jobs";
 
 @autoinject
 export class Minion {
@@ -12,6 +13,7 @@ export class Minion {
     public minionId: string;
 
     public minion: GetMinion.Result;
+    public jobCount: number;
 
     public constructor(mediator: Mediator) {
         this.mediator = mediator;
@@ -21,11 +23,20 @@ export class Minion {
         params = params || {};
         this.minionId = params.minionId;
 
+        let jobTask = this.mediator
+            .for(GetMinionJobs.Request)
+            .handle<GetMinionJobs.Result>({
+                id: this.minionId,
+                size: 1
+            });
+
         this.minion = await this.mediator
             .for(GetMinion.Request)
             .handle<GetMinion.Result>({
                 id: this.minionId
             });
+
+        await jobTask.then(x => this.jobCount = x.count);
     }
 
     public async attached() {
