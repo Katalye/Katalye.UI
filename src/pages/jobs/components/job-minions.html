@@ -1,14 +1,70 @@
 <template>
-    <div class="minion-list" if.bind="jobMinions">
+    <div class="minion-list p-4" if.bind="jobMinions">
 
+        <h4 class="mb-3 font-weight-light">Job</h4>
         <div if.bind="!loading">
-            <ul class="list-group p-4">
+
+            <div class="row mt-2">
+                <div class="col">
+                    <div class="text-muted">JID</div>
+                    <div>${job.jid}</div>
+                </div>
+                <div class="col">
+                    <div class="text-muted">Function</div>
+                    <div>${job.function}</div>
+                </div>
+                <div class="col">
+                    <div class="text-muted">User</div>
+                    <div>${job.user|default:'-'}</div>
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-4">
+                    <div class="text-muted">Created On</div>
+                    <div title.bind="job.createdOn|timeAgo">${job.createdOn|dateFormat|default:'-'}</div>
+                </div>
+                <div class="col-8">
+                    <div class="text-muted">Arguments</div>
+                    <div if.bind="job.arguments|none">
+                        -
+                    </div>
+                    <div if.bind="job.arguments|any">
+                        ${job.arguments}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <h4 class="my-3 font-weight-light">Command</h4>
+        <div if.bind="!loading">
+            <div class="row">
+                <div class="col">
+                    <pre class="bg-dark text-light py-1 px-2 m-0 rounded">${job|saltCommand}</pre>
+                </div>
+            </div>
+        </div>
+
+        <div if.bind="loading">
+            <loading></loading>
+        </div>
+
+        <div class="my-3 d-flex justify-content-between align-items-center">
+            <h4 class="font-weight-light m-0">Minion Outcomes</h4>
+            <div class="border rounded px-2 py-1 ${job.succeededCount == job.completedCount ? 'border-success' : 'border-danger'}"
+                if.bind="!loading">
+                ${job.succeededCount} / ${job.completedCount} <span class="text-muted">succeeded</span>
+            </div>
+        </div>
+        <div if.bind="!listLoading">
+            <ul class="list-group mb-2">
                 <li class="list-group-item d-flex status ${minion.success != false && minion.returnCode == 0 ? 'status-success' : 'status-danger'}"
                     repeat.for="minion of jobMinions.result">
                     <div class="mr-auto">
-                        <a href="/minions/${minion.minionId}/jobs/${jobId}">
-                            ${minion.minionId} / ${jobId}
-                        </a>
+                        <a href="/minions/${minion.minionId}">${minion.minionId}</a>
+                        /
+                        <a href="/minions/${minion.minionId}/jobs/${jobId}">${jobId}</a>
                     </div>
                     <div title="${minion.returnedAt | timeAgo}">
                         ${minion.returnedAt | dateFormat}
@@ -18,7 +74,7 @@
             <pagination page.bind="page" count.bind="jobMinions.count" pages.bind="jobMinions.pages"></pagination>
         </div>
 
-        <div if.bind="loading">
+        <div if.bind="listLoading">
             <loading></loading>
         </div>
 
