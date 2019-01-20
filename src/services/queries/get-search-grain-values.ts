@@ -24,7 +24,7 @@ export namespace GetSearchGrainValues {
 
         public handle(request: Request): Promise<Result> {
             return this.client
-                .withPath("api/v1/minions/_search-grain-values")
+                .withPath("/api/v1/minions/_search-grain-values")
                 .withQuery({
                     path: request.path,
                     search: request.search

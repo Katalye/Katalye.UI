@@ -26,7 +26,7 @@ export namespace GetMinion {
 
         public handle(request: Request): Promise<Result> {
             return this.client
-                .withPath(`api/v1/minions/${request.id}`)
+                .withPath(`/api/v1/minions/${request.id}`)
                 .withMethod("GET")
                 .fetch<Result>();
         }

@@ -38,7 +38,7 @@ export namespace GetJobs {
 
         public handle(request: Request): Promise<Result> {
             return this.client
-                .withPath("api/v1/jobs")
+                .withPath("/api/v1/jobs")
                 .withMethod("GET")
                 .withQuery({
                     page: request.page,

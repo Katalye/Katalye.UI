@@ -69,6 +69,8 @@ export class App {
             }
         ]);
 
+        config.options.pushState = true;
+
         config.mapUnknownRoutes(PLATFORM.moduleName("./pages/not-found/not-found"));
     }
 }

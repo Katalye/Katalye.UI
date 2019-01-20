@@ -13,7 +13,7 @@ export class KatalyeClient {
         this.client = client;
         this.client.configure(config => {
             config
-                .withBaseUrl("api/")
+                .withBaseUrl("/api/")
                 .withInterceptor({
                     request: request => {
                         this.logger.info(`Requesting ${request.method} ${request.url}`);

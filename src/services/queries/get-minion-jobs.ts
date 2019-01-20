@@ -42,7 +42,7 @@ export namespace GetMinionJobs {
 
         public async handle(request: Request): Promise<Result> {
             let response = await this.client
-                .withPath(`api/v1/minions/${request.id}/jobs`)
+                .withPath(`/api/v1/minions/${request.id}/jobs`)
                 .withMethod("GET")
                 .withQuery({
                     page: request.page,

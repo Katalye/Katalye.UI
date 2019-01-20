@@ -39,7 +39,7 @@ export namespace GetJobMinions {
 
         public handle(request: Request): Promise<Result> {
             return this.client
-                .withPath(`api/v1/jobs/${request.jid}`)
+                .withPath(`/api/v1/jobs/${request.jid}`)
                 .withMethod("GET")
                 .withQuery({
                     page: request.page,

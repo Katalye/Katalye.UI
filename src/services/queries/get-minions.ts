@@ -42,7 +42,7 @@ export namespace GetMinions {
                 .filter(x => x.Value)
                 .map(x => `${x.Key},${x.Value}`);
             return this.client
-                .withPath("api/v1/minions")
+                .withPath("/api/v1/minions")
                 .withQuery({
                     page: request.page,
                     size: request.size,

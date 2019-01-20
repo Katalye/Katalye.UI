@@ -36,7 +36,7 @@ export namespace GetMinionJob {
 
         public async handle(request: Request): Promise<Result> {
             let response = await this.client
-                .withPath(`api/v1/minions/${request.id}/jobs/${request.jid}`)
+                .withPath(`/api/v1/minions/${request.id}/jobs/${request.jid}`)
                 .withMethod("GET")
                 .fetch<Result>();
 
