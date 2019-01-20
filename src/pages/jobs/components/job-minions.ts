@@ -15,6 +15,8 @@ export class JobMinions {
     @observable
     public page: number;
 
+    public loading: boolean = true;
+
     public jobMinions: GetJobMinions.Result;
 
     public constructor(router: Router, mediator: Mediator) {
@@ -33,12 +35,14 @@ export class JobMinions {
 
     private async refresh() {
         if (this.jobId) {
+            this.loading = true;
             this.jobMinions = await this.mediator
                 .for(GetJobMinions.Request)
                 .handle<GetJobMinions.Result>({
                     page: this.page,
                     jid: this.jobId
                 });
+            this.loading = false;
         }
     }
 }

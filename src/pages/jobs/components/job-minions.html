@@ -1,12 +1,14 @@
 <template>
     <div class="minion-list" if.bind="jobMinions">
 
-        <div if="!loading">
+        <div if.bind="!loading">
             <ul class="list-group p-4">
                 <li class="list-group-item d-flex status ${minion.success != false && minion.returnCode == 0 ? 'status-success' : 'status-danger'}"
                     repeat.for="minion of jobMinions.result">
                     <div class="mr-auto">
-                        ${minion.minionId}
+                        <a href="/minions/${minion.minionId}/jobs/${jobId}">
+                            ${minion.minionId} / ${jobId}
+                        </a>
                     </div>
                     <div title="${minion.returnedAt | timeAgo}">
                         ${minion.returnedAt | dateFormat}
