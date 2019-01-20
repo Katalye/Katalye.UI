@@ -1,0 +1,59 @@
+<template>
+    <page-control>
+
+    </page-control>
+    <page-container>
+        <div class="row">
+            <div class="col">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col" class="ml-2">Jid</th>
+                            <th scope="col">Function</th>
+                            <th scope="col">Arguments</th>
+                            <th scope="col">Seen At</th>
+                            <th scope="col">Minion Outcomes</th>
+                        </tr>
+                    </thead>
+                    <tr class="clickable" repeat.for="job of jobs.result" click.delegate="selectJob(job.jid)">
+                        <td></td>
+                        <td>
+                            <a href="#">${job.jid}</a>
+                        </td>
+                        <td>
+                            <pre class="text-light bg-dark p-2 rounded m-0">${job.function}</pre>
+                        </td>
+                        <td>${job.arguments}</td>
+                        <td>
+                            ${job.seenAt|timeAgo}
+                            <br>
+                            <span class="text-muted">
+                                ${job.seenAt|dateFormat}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="border rounded px-2 py-1 ${job.succeededCount == job.completedCount ? 'border-success' : 'border-danger'}">
+                                ${job.succeededCount} / ${job.completedCount} <span class="text-muted">succeeded</span>
+                            </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <pagination page.bind="page" count.bind="jobs.count" pages.bind="jobs.pages"></pagination>
+            </div>
+        </div>
+    </page-container>
+    <blade open.bind="open">
+        <span slot="title">
+            <div>
+                <li class="nav-item" if.bind="selectedJobId">
+                    JID: ${selectedJobId}
+                </li>
+            </div>
+        </span>
+        <div if.bind="jobMinions">
+            <pagination page.bind="minionsPage" count.bind="jobMinions.count" pages.bind="jobMinions.pages"></pagination>
+        </div>
+    </blade>
+</template>

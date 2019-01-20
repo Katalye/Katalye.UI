@@ -1,4 +1,3 @@
-import "./minions.scss";
 import { autoinject, PLATFORM } from "aurelia-framework";
 import { RouterConfiguration, Router } from "aurelia-router";
 

@@ -48,7 +48,7 @@ export class App {
             {
                 route: ["jobs"],
                 name: "jobs",
-                moduleId: PLATFORM.moduleName("./pages/not-found/not-found"),
+                moduleId: PLATFORM.moduleName("./pages/jobs/jobs"),
                 nav: true,
                 title: "Jobs",
                 breadcrumb: true,

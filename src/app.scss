@@ -90,4 +90,11 @@ $sidebar-width: 200px;
     tr td {
         vertical-align: middle
     }
+    tr.clickable {
+        cursor: pointer;
+        &:hover {
+            background-color: lighten($color: $gray-lighter, $amount: 2%);
+            transition: background-color 200ms ease-in-out;
+        }
+    }
 }
