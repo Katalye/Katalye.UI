@@ -8,11 +8,12 @@ export class Blade {
     })
     public open: boolean;
 
-    public close() {
-        this.open = false;
-    }
+    public element: HTMLElement;
 
-    public stopPropagation(event: Event) {
-        event.stopPropagation();
+    public close(event: Event) {
+        let targetMatches = event.target == this.element;
+        if (targetMatches) {
+            this.open = false;
+        }
     }
 }

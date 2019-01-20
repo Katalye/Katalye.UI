@@ -1,8 +1,8 @@
 <template>
 
-    <div class="blade ${open ? 'open' : 'close'}" click.delegate="close()">
+    <div class="blade ${open ? 'open' : 'close'}" element.ref="element" click.delegate="close($event)">
 
-        <div class="blade-container border-left" click.delegate="stopPropagation($event)">
+        <div class="blade-container border-left">
 
             <nav class="navbar blade-nav navbar-light bg-white border-bottom">
                 <ul class="navbar-nav mr-auto">
