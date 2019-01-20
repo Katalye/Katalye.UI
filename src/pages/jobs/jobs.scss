@@ -1,0 +1,13 @@
+.jobs {
+    .minion-list {
+        .status {
+            border-left: black 8px solid;
+            &.status-success {
+                border-left-color: $success;
+            }
+            &.status-danger {
+                border-left-color: $danger;
+            }
+        }
+    }
+}

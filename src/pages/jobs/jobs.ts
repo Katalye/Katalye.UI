@@ -1,8 +1,8 @@
+import "./jobs.scss";
 import { autoinject, observable } from "aurelia-framework";
 import { Mediator } from "../../services/mediator";
 import { GetJobs } from "../../services/queries/get-jobs";
 import { Router } from "aurelia-router";
-import { GetJobMinions } from "../../services/queries/get-job-minions";
 
 @autoinject
 export class Jobs {
@@ -13,10 +13,6 @@ export class Jobs {
     public jobs: GetJobs.Result;
     @observable
     public page: number;
-
-    public jobMinions: GetJobMinions.Result;
-    @observable
-    public minionsPage: number;
 
     @observable
     public selectedJobId: string;
@@ -47,20 +43,8 @@ export class Jobs {
             });
     }
 
-    public async minionsPageChanged() {
-        if (this.selectedJobId) {
-            this.jobMinions = await this.mediator
-                .for(GetJobMinions.Request)
-                .handle<GetJobMinions.Result>({
-                    page: this.minionsPage,
-                    jid: this.selectedJobId
-                });
-        }
-    }
-
     public selectJob(jid: string) {
         this.selectedJobId = jid;
-        this.minionsPage = 1;
     }
 
     public async selectedJobIdChanged() {
@@ -73,7 +57,6 @@ export class Jobs {
     public async openChanged() {
         if (!this.open) {
             this.selectedJobId = null;
-            this.minionsPage = 0;
         }
     }
 }

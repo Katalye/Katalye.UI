@@ -1,0 +1,24 @@
+<template>
+    <div class="minion-list" if.bind="jobMinions">
+
+        <div if="!loading">
+            <ul class="list-group p-4">
+                <li class="list-group-item d-flex status ${minion.success != false && minion.returnCode == 0 ? 'status-success' : 'status-danger'}"
+                    repeat.for="minion of jobMinions.result">
+                    <div class="mr-auto">
+                        ${minion.minionId}
+                    </div>
+                    <div title="${minion.returnedAt | timeAgo}">
+                        ${minion.returnedAt | dateFormat}
+                    </div>
+                </li>
+            </ul>
+            <pagination page.bind="page" count.bind="jobMinions.count" pages.bind="jobMinions.pages"></pagination>
+        </div>
+
+        <div if.bind="loading">
+            <loading></loading>
+        </div>
+
+    </div>
+</template>
