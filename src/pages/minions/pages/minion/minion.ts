@@ -22,7 +22,10 @@ export class Minion {
     public async activate(params: any) {
         params = params || {};
         this.minionId = params.minionId;
+    }
 
+    public async attached() {
+        this.router.parent.currentInstruction.config.title = this.minionId;
         let jobTask = this.mediator
             .for(GetMinionJobs.Request)
             .handle<GetMinionJobs.Result>({
@@ -37,10 +40,6 @@ export class Minion {
             });
 
         await jobTask.then(x => this.jobCount = x.count);
-    }
-
-    public async attached() {
-        this.router.parent.currentInstruction.config.title = this.minionId;
     }
 
     @computedFrom("minion", "minion.grains")

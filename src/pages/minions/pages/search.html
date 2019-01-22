@@ -22,37 +22,37 @@
                             </th>
                         </tr>
                     </thead>
-                    <tr repeat.for="minion of minions.result">
+                    <tr repeat.for="minion of minions.result" class="clickable">
                         <td></td>
                         <td>
                             <i class="fas fa-circle fa-xs mr-2 ml-2 text-success"></i>
                             <a route-href="route: minion; params.bind: { minionId: minion.id }">
-                                <strong>${minion.id}</strong>
+                                ${minion.id}
                             </a>
                         </td>
-                        <td>
+                        <td click.delegate="routeToMinion(minion.id)">
                             <os-icon os.bind="minion.os | join"></os-icon>
                             ${minion.os | join}
                         </td>
-                        <td>
+                        <td click.delegate="routeToMinion(minion.id)">
                             <span repeat.for="address of minion.ipV4Addresses | remove:'127\.0\.0\.1' | batch:2">
                                 ${address | join}
                                 <br>
                             </span>
                         </td>
-                        <td>
+                        <td click.delegate="routeToMinion(minion.id)">
                             ${minion.lastSeen | timeAgo}
                             <br>
                             <span class="text-muted">${minion.lastSeen | dateFormat}</span>
                         </td>
-                        <td>
+                        <td click.delegate="routeToMinion(minion.id)">
                             ${minion.lastAuthenticated | timeAgo}
                             <br>
                             <span class="text-muted">
                                 ${minion.lastAuthenticated | dateFormat}
                             </span>
                         </td>
-                        <td>
+                        <td click.delegate="routeToMinion(minion.id)">
                             ${minion.saltMinionVersion | join:'.'}
 
                             <br>
