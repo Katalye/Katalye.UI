@@ -7,8 +7,8 @@
         <div class="col-auto">
 
             <div class="btn-group" role="group" aria-label="Basic example">
-                <template repeat.for="state of ['full', 'changes', 'failed']" class="btn btn-secondary ">
-                    <button type="button" class="btn btn-secondary ${state == selectedState ? 'active':''} text-capitalize"
+                <template repeat.for="state of ['full', 'changes', 'failed']">
+                    <button type="button" class="btn btn-outline-primary ${state == selectedState ? 'active':''} text-capitalize"
                         click.delegate="selectState(state)">
                         ${state}
                     </button>

@@ -4,9 +4,16 @@
 
         <page-control>
 
-            <div class="details p-2">
-                <div class="text-muted">Minion</div>
-                <h2 class="font-weight-light">${minion.id}</h2>
+            <div class="details px-2">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <div class="text-muted">Minion</div>
+                        <h2 class="font-weight-light">${minion.id}</h2>
+                    </div>
+                    <div class="align-self-end">
+                        <input class="btn btn-outline-primary" type="button" value="Refresh Grains">
+                    </div>
+                </div>
 
                 <div class="row mt-2">
                     <div class="col">
