@@ -31,7 +31,7 @@ export class App {
                 title: "Overview",
                 breadcrumb: true,
                 settings: {
-                    icon: "fas fa-server"
+                    icon: "fas fa-chart-area"
                 }
             },
             {

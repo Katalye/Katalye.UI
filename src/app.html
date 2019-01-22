@@ -1,13 +1,13 @@
 <template>
     <div class="app">
-        <nav class="navbar main-nav navbar-expand-lg navbar-light bg-white fixed-top border-bottom">
+        <nav class="navbar main-nav navbar-expand-lg navbar-light bg-white fixed-top">
             <button type="button" class="navbar-toggler mr-2 " data-toggle="offcanvas" title="Toggle responsive left sidebar"
                 click.delegate="toggleSidebar()">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <a class="navbar-brand d-flex align-items-center pl-4 mr-0 border-right" href="#">
-                Katalye
+            <a class="navbar-brand d-flex align-items-center mr-0 border-right" href="#">
+                <span class="ml-4">Katalye</span>
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
@@ -15,7 +15,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbar">
+            <div class="collapse navbar-collapse border-bottom nav-body bg-white" id="navbar">
                 <ul class="navbar-nav mr-auto crumbs d-flex px-4">
                     <breadcrumbs containerless></breadcrumbs>
                 </ul>
@@ -44,12 +44,11 @@
             </div>
         </nav>
         <div class="workspace bg-light">
-            <div class="sidebar ${sidebarOpen ? 'active' : ''} bg-white border-top border-right navbar-light" id="sidebar"
-                role="navigation">
+            <div class="sidebar ${sidebarOpen ? 'active' : ''} border-top border-right navbar-light" id="sidebar" role="navigation">
                 <ul class="nav flex-column pt-4">
                     <li class="nav-item ${nav.isActive ? 'active' : ''}" repeat.for="nav of router.navigation">
                         <a class="nav-link pl-4" href.bind="nav.href">
-                            <i class="${nav.settings.icon} fa-fw mr-1"></i>
+                            <span class="mr-1"><i class="${nav.settings.icon} fa-fw mr-1"></i></span>
                             ${nav.title}
                         </a>
                     </li>
