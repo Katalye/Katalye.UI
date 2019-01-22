@@ -66,6 +66,13 @@ export class App {
                 settings: {
                     icon: "fas fa-book",
                 }
+            },
+            {
+                route: ["settings"],
+                name: "settings",
+                moduleId: PLATFORM.moduleName("./pages/settings/settings"),
+                title: "Settings",
+                breadcrumb: true
             }
         ]);
 

@@ -1,0 +1,12 @@
+.settings {
+    .menu {
+        .nav-item {
+            &.selected {
+                border-right: $primary $accent-width solid !important;
+            }
+        }
+    }
+    .section {
+        overflow: auto;
+    }
+}
