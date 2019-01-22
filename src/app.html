@@ -44,7 +44,8 @@
             </div>
         </nav>
         <div class="workspace bg-light">
-            <div class="sidebar ${sidebarOpen ? 'active' : ''} border-top border-right navbar-light" id="sidebar" role="navigation">
+            <div class="sidebar ${sidebarOpen ? 'active' : ''} border-top border-right navbar-light d-flex flex-column justify-content-between"
+                id="sidebar" role="navigation">
                 <ul class="nav flex-column pt-4">
                     <li class="nav-item ${nav.isActive ? 'active' : ''}" repeat.for="nav of router.navigation">
                         <a class="nav-link pl-4" href.bind="nav.href">
@@ -53,6 +54,14 @@
                         </a>
                     </li>
                 </ul>
+                <footer class="text-muted d-flex justify-content-around align-items-center py-3">
+                    <div class="font-weight-light">
+                        Built with <i class="fas fa-heart fa-sm text-danger mx-1"></i> on
+                        <a class="text-dark" href="https://github.com/Katalye/Katalye">
+                            <i class="fab fa-github mx-1"></i>
+                        </a>
+                    </div>
+                </footer>
             </div>
             <div class="main-container">
                 <div class="scroll-area">
