@@ -54,7 +54,7 @@ $sidebar-width: 200px;
             z-index: 20;
             &.active {}
             .nav-item {
-                border-left: 3px solid $body-bg;
+                border-left: $accent-width solid $body-bg;
                 .nav-link {
                     color: $navbar-light-color;
                     @include hover-focus {
@@ -93,7 +93,7 @@ $sidebar-width: 200px;
     tr.clickable {
         cursor: pointer;
         &:hover {
-            background-color: lighten($color: $gray-lighter, $amount: 2%);
+            background-color: lighten($color: $gray-200, $amount: 2%);
             transition: background-color 200ms ease-in-out;
         }
     }

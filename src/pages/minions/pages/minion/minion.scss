@@ -6,7 +6,7 @@
         width: 99%
     }
     .nav {
-        border-bottom: 3px $body-bg solid;
+        border-bottom: $accent-width $body-bg solid;
         margin-bottom: -1.5em;
         .nav-item {
             .nav-link {
@@ -14,21 +14,21 @@
                 font-weight: 300;
                 padding-left: 1.2em;
                 padding-right: 1.2em;
-                margin-bottom: -3px;
+                margin-bottom: $accent-width * -1;
                 &:hover {
                     background-color: lighten($color: #357880, $amount: 60%);
-                    border-bottom: lighten($color: #357880, $amount: 60%) 3px solid;
+                    border-bottom: lighten($color: #357880, $amount: 60%) $accent-width solid;
                 }
                 &.active {
                     font-weight: 400;
-                    border-bottom: #357880 3px solid;
+                    border-bottom: #357880 $accent-width solid;
                 }
             }
         }
     }
     .job-list {
         .status {
-            border-left: black 10px solid;
+            border-left: black $accent-width * 2 solid;
             &.success {
                 border-left-color: $success;
             }

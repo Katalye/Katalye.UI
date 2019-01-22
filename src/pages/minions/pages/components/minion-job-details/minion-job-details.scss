@@ -1,14 +1,14 @@
 .state {
     .list-group-item {
-        border-left: 8px solid;
+        border-left: $accent-width solid;
         &.success {
-            border-left-color: $brand-success;
+            border-left-color: $success;
             &.changed {
-                border-left-color: $brand-warning;
+                border-left-color: $warning;
             }
         }
         &.failed {
-            border-left-color: $brand-danger;
+            border-left-color: $danger;
         }
         .header {
             max-width: 60%;
@@ -21,7 +21,7 @@
             display: block;
         }
         .changes {
-            margin-left: -8px;
+            margin-left: $accent-width * -1;
         }
     }
 }

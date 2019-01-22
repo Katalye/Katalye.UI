@@ -1,7 +1,7 @@
 .jobs {
     .minion-list {
         .status {
-            border-left: black 8px solid;
+            border-left: black $accent-width solid;
             &.status-success {
                 border-left-color: $success;
             }
