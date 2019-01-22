@@ -62,8 +62,8 @@ $sidebar-width: 200px;
                     }
                 }
                 &.active {
-                    background-color: lighten($color: #357880, $amount: 60%);
-                    border-left-color: #357880;
+                    background-color: $primary-light;
+                    border-left-color: $primary;
                     .nav-link {
                         color: $navbar-light-active-color;
                     }

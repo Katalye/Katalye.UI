@@ -16,12 +16,12 @@
                 padding-right: 1.2em;
                 margin-bottom: $accent-width * -1;
                 &:hover {
-                    background-color: lighten($color: #357880, $amount: 60%);
-                    border-bottom: lighten($color: #357880, $amount: 60%) $accent-width solid;
+                    background-color: $primary-light;
+                    border-bottom: $primary-light $accent-width solid;
                 }
                 &.active {
                     font-weight: 400;
-                    border-bottom: #357880 $accent-width solid;
+                    border-bottom: $primary $accent-width solid;
                 }
             }
         }

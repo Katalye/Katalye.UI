@@ -1,5 +1,7 @@
 // This file should only contain SASS constructs, that means no styling.
-// $primary: $blue !default;
+// Colors: https://color.adobe.com/Katalye-V1-color-theme-11913610/
+$primary: #1DC5AA;
+$primary-light: lighten($primary, 50%);
 // $secondary: $gray-600 !default;
 $gray-700: #495057 !default;
 $success: #6FBF78;
@@ -9,6 +11,8 @@ $danger: #F05A6A;
 // $light: $gray-100 !default;
 $dark: $gray-700;
 $accent-width: 3px;
+// $link-color: desaturate($primary, 20%);
+$link-color: #0098FF;
 @import "~bootstrap/scss/_functions.scss";
 @import "~bootstrap/scss/_variables.scss";
 @import "~bootstrap/scss/_mixins.scss";
