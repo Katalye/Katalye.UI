@@ -1,0 +1,15 @@
+<template>
+    <a class="nav-item list-group-item list-group-item-action border-left-0 border-right-0 rounded-0 ${nav.isActive ? 'selected' : ''}"
+        href.bind="nav.href">
+
+        <div class="d-flex">
+            <div class="pr-3 d-flex flex-column justify-content-center">
+                <span class="mb-3"><i class="${nav.settings.icon} fa-lg"></i></span>
+            </div>
+            <div class="d-flex flex-column">
+                <h4 class="font-weight-light m-0">${nav.title}</h4>
+                <div class="text-muted">${nav.settings.description}</div>
+            </div>
+        </div>
+    </a>
+</template>

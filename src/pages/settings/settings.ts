@@ -14,6 +14,19 @@ export class Settings {
                 redirect: "katalye"
             },
             {
+                route: ["profile"],
+                name: "settings-profile",
+                moduleId: PLATFORM.moduleName("./sections/profile"),
+                title: "Profile",
+                breadcrumb: true,
+                nav: true,
+                settings: {
+                    icon: "fas fa-user",
+                    description: "Configure your user settings",
+                    type: "user"
+                }
+            },
+            {
                 route: ["katalye"],
                 name: "settings-katalye",
                 moduleId: PLATFORM.moduleName("./sections/katalye"),
@@ -22,7 +35,8 @@ export class Settings {
                 nav: true,
                 settings: {
                     icon: "fas fa-server",
-                    description: "Configure Katalye server settings"
+                    description: "Configure Katalye server settings",
+                    type: "admin"
                 }
             },
             {
@@ -34,7 +48,8 @@ export class Settings {
                 nav: true,
                 settings: {
                     icon: "fas fa-cloud",
-                    description: "Configure connecting to the Salt API"
+                    description: "Configure connecting to the Salt API",
+                    type: "admin"
                 }
             },
             {
@@ -46,7 +61,8 @@ export class Settings {
                 nav: true,
                 settings: {
                     icon: "fas fa-users",
-                    description: "Configure which users can access the server"
+                    description: "Configure which users can access the server",
+                    type: "admin"
                 }
             },
             {
@@ -58,7 +74,8 @@ export class Settings {
                 nav: true,
                 settings: {
                     icon: "fas fa-bell",
-                    description: "Configure user notification settings"
+                    description: "Configure user notification settings",
+                    type: "admin"
                 }
             },
         ]);
