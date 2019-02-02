@@ -75,15 +75,6 @@ const webpackConfig = {
         extensions: ['.ts', '.js'],
         modules: [sourceDirectory, nodeModuleDirectory]
     },
-    devServer: {
-        inline: true,
-        contentBase: '/',
-        historyApiFallback: true,
-        port: 8080,
-        proxy: {
-            '/api': 'http://localhost:5000'
-        }
-    },
     plugins: [
         new AureliaPlugin(),
         new HtmlWebpackPlugin({

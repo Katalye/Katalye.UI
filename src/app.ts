@@ -26,7 +26,7 @@ export class App {
             {
                 route: ["overview"],
                 name: "overview",
-                moduleId: PLATFORM.moduleName("./pages/overview/overview"),
+                moduleId: PLATFORM.moduleName("./pages/overview/overview", "overview"),
                 nav: true,
                 title: "Overview",
                 breadcrumb: true,
@@ -37,7 +37,7 @@ export class App {
             {
                 route: ["minions"],
                 name: "minions",
-                moduleId: PLATFORM.moduleName("./pages/minions/minions"),
+                moduleId: PLATFORM.moduleName("./pages/minions/minions", "minions"),
                 nav: true,
                 title: "Minions",
                 breadcrumb: true,
@@ -48,7 +48,7 @@ export class App {
             {
                 route: ["jobs"],
                 name: "jobs",
-                moduleId: PLATFORM.moduleName("./pages/jobs/jobs"),
+                moduleId: PLATFORM.moduleName("./pages/jobs/jobs", "jobs"),
                 nav: true,
                 title: "Jobs",
                 breadcrumb: true,
@@ -70,7 +70,7 @@ export class App {
             {
                 route: ["settings"],
                 name: "settings",
-                moduleId: PLATFORM.moduleName("./pages/settings/settings"),
+                moduleId: PLATFORM.moduleName("./pages/settings/settings", "settings"),
                 title: "Settings",
                 breadcrumb: true
             }
