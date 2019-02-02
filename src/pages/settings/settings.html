@@ -1,18 +1,20 @@
 <template>
     <div class="settings h-100">
         <div class="row h-100 m-0">
-            <div class="col-4 bg-white border-right h-100 px-0">
+            <div class="col-4 bg-white border-right h-100 px-0 options">
 
                 <require from="./menu-option"></require>
 
-                <h3 class="font-weight-light mt-4 ml-2">User Settings</h3>
+                <h4 class="font-weight-light mt-4 ml-2">User Settings</h4>
                 <div class="list-group menu mt-2">
-                    <menu-option nav.bind="nav" repeat.for="nav of router.navigation" if.bind="nav.settings.type == 'user'"></menu-option>
+                    <menu-option nav.bind="nav" first.bind="$first" repeat.for="nav of userNavigation"></menu-option>
                 </div>
 
-                <h3 class="font-weight-light mt-4 ml-2">Server Settings</h3>
+                <div class="p-2 divider"></div>
+
+                <h4 class="font-weight-light mt-4 ml-2">Server Settings</h4>
                 <div class="list-group menu mt-2">
-                    <menu-option nav.bind="nav" repeat.for="nav of router.navigation" if.bind="nav.settings.type == 'admin'"></menu-option>
+                    <menu-option nav.bind="nav" first.bind="$first" repeat.for="nav of adminNavigation"></menu-option>
                 </div>
 
             </div>

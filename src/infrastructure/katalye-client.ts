@@ -63,7 +63,10 @@ export class KatalyeClientImpl {
         }
         let request = new Request(finalPath, {
             method: this.method,
-            body: JSON.stringify(body)
+            body: JSON.stringify(body),
+            headers: {
+                "Content-Type": "application/json"
+            }
         });
         let result = await this.client.fetch(request);
 

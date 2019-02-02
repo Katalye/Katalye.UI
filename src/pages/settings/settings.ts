@@ -1,10 +1,23 @@
 import "./settings.scss";
 import { RouterConfiguration, Router } from "aurelia-router";
 import { PLATFORM } from "aurelia-pal";
+import { computedFrom } from "aurelia-binding";
 
 export class Settings {
 
     public router: Router;
+
+    @computedFrom("router.navigation")
+    public get userNavigation() {
+        return this.router.navigation
+            .filter(x => x.settings.type == "user");
+    }
+
+    @computedFrom("router.navigation")
+    public get adminNavigation() {
+        return this.router.navigation
+            .filter(x => x.settings.type == "admin");
+    }
 
     public configureRouter(config: RouterConfiguration, router: Router): void {
         this.router = router;
@@ -70,6 +83,19 @@ export class Settings {
                 name: "settings-notifications",
                 moduleId: PLATFORM.moduleName("./sections/notifications"),
                 title: "Notifications",
+                breadcrumb: true,
+                nav: true,
+                settings: {
+                    icon: "fas fa-bell",
+                    description: "Configure user notification settings",
+                    type: "admin"
+                }
+            },
+            {
+                route: ["about"],
+                name: "settings-about",
+                moduleId: PLATFORM.moduleName("./sections/about"),
+                title: "About",
                 breadcrumb: true,
                 nav: true,
                 settings: {

@@ -8,5 +8,23 @@
     }
     .section {
         overflow: auto;
+        .title {
+            font-weight: 400;
+            margin-top: 1.2em;
+            display: inline-block;
+        }
+        .description {
+            color: $text-muted;
+            display: inline-block;
+            margin-left: 0.3em;
+            size: 0.8em;
+        }
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+    .options {
+        overflow: auto;
     }
 }

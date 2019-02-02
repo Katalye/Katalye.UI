@@ -1057,6 +1057,16 @@ aurelia-binding@^2.0.0:
     aurelia-pal "^1.0.0"
     aurelia-task-queue "^1.0.0"
 
+aurelia-binding@^2.1.5:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/aurelia-binding/-/aurelia-binding-2.2.0.tgz#9a6f3990fe854a040a6da1ef469f830d2b31b9a2"
+  integrity sha512-bZ2DZ4fsQMTa+q54q+rU6o4xvfsC+RiCkjiwtRDU+DFsQOKPHOUqS9RhFgimSKzELpHzj+bxTxoXjImoowzR0Q==
+  dependencies:
+    aurelia-logging "^1.0.0"
+    aurelia-metadata "^1.0.0"
+    aurelia-pal "^1.0.0"
+    aurelia-task-queue "^1.0.0"
+
 aurelia-bootstrapper@^2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/aurelia-bootstrapper/-/aurelia-bootstrapper-2.3.1.tgz#67c9bfc34ab09157efe4c59b8518a141112a432e"
@@ -1077,7 +1087,7 @@ aurelia-bootstrapper@^2.3.1:
     aurelia-templating-resources "^1.7.0"
     aurelia-templating-router "^1.0.0"
 
-aurelia-dependency-injection@^1.0.0, aurelia-dependency-injection@^1.4.2:
+aurelia-dependency-injection@^1.0.0, aurelia-dependency-injection@^1.4.1, aurelia-dependency-injection@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/aurelia-dependency-injection/-/aurelia-dependency-injection-1.4.2.tgz#fa9d1a9f4931e353fb8f938ee0c54b9fbf3f341a"
   integrity sha512-NddvPLnKx6VQA70BXa1sfaLeEqwBfNrMaTYdHSS9kKD20lBwsXHWBZtRQPgRg9LF8g4yFKjxEgRA9Ja6SFregA==
@@ -1171,6 +1181,11 @@ aurelia-logging@^1.0.0:
   resolved "https://registry.yarnpkg.com/aurelia-logging/-/aurelia-logging-1.5.0.tgz#4eab204fbb9beae698f6e79a7a8641f4f60ce6ea"
   integrity sha512-u9Hhoj3yDHthKgTyj2svr7PaO41e2WFM2dSITxzOMzW8dC9hGVsIo9Hl6cereTP4+GMfMMQF5ZFp6Kfg87Ov0Q==
 
+aurelia-logging@^1.5.0:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/aurelia-logging/-/aurelia-logging-1.5.1.tgz#d9f2f3da8c10bc9385578c86ee49829d75c603c0"
+  integrity sha512-HRycP+LrzAOsKN4bOQftP9aVztvVhsuvVZqHV9uuunK9peQCx38sTnC1mdC/qxoF+qFa7xVSVJh1xg8Whj1jrg==
+
 aurelia-metadata@^1.0.0, aurelia-metadata@^1.0.2:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/aurelia-metadata/-/aurelia-metadata-1.0.4.tgz#3f3457e41add9f60547547e0c6b52a8c65347140"
@@ -1189,6 +1204,11 @@ aurelia-pal@^1.0.0, aurelia-pal@^1.1.1, aurelia-pal@^1.3.0, aurelia-pal@^1.4.0:
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/aurelia-pal/-/aurelia-pal-1.8.0.tgz#b6496fae8b335b8cecb1f8b98434ea4125fd2333"
   integrity sha512-Nc9S/JTUh1ErSUwg4INhgwBTe99ef8gYXZLjBnP4JJBmLcc/ChhOvj/dSRwluPkosggQgyj2pjla/9VAYHAXPg==
+
+aurelia-pal@^1.8.0:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/aurelia-pal/-/aurelia-pal-1.8.1.tgz#a7e9eceda17e546960f0a0bfc236a53d0f214fbd"
+  integrity sha512-8QwwS/gHdxRh0+a6pKnyVA1/xHcZV1P1nH7Vai3k+HjVLwj1cnsF/TCDx9SGedhEQxDzIryL41k6OcjwZR94Ig==
 
 aurelia-path@^1.0.0, aurelia-path@^1.1.1:
   version "1.1.1"
@@ -1225,6 +1245,13 @@ aurelia-task-queue@^1.0.0, aurelia-task-queue@^1.1.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/aurelia-task-queue/-/aurelia-task-queue-1.3.1.tgz#3399e726d2f387b4101381141e321d2c2f1d789e"
   integrity sha512-Eyto+EVcezwrY3qHZwBvueKb3j+e/lgKp2nNbX1y6KVJmoO9XzK/KctViprpn7ZFl9YGYjJ9s+zJM8nFlQUr1g==
+  dependencies:
+    aurelia-pal "^1.0.0"
+
+aurelia-task-queue@^1.3.1:
+  version "1.3.2"
+  resolved "https://registry.yarnpkg.com/aurelia-task-queue/-/aurelia-task-queue-1.3.2.tgz#afabb7e0c49734b368f36c5bbf2c275bebd4da5d"
+  integrity sha512-4a3TLUP6rN2RG9bW9g2yM6G4cE70sWXqAV1OAoYDgv9QHmlXFP8V/DEJxVjdcmEQwmtenRN+uQA0AkDORpgHUg==
   dependencies:
     aurelia-pal "^1.0.0"
 
@@ -1266,7 +1293,7 @@ aurelia-templating-router@^1.0.0:
     aurelia-router "^1.5.0"
     aurelia-templating "^1.8.1"
 
-aurelia-templating@^1.10.1, aurelia-templating@^1.3.0, aurelia-templating@^1.8.1:
+aurelia-templating@^1.10.1, aurelia-templating@^1.3.0, aurelia-templating@^1.8.1, aurelia-templating@^1.9.0:
   version "1.10.1"
   resolved "https://registry.yarnpkg.com/aurelia-templating/-/aurelia-templating-1.10.1.tgz#1f0c0576c4d03b9a17397b59c399d36ef0374f48"
   integrity sha512-GDClZWk+32SUYMsEttRFE3+dIbzZeDf5vl9dvuO6ULe+erTUOq2TUf9pHknWZuzoXXdGSD2qQnk+AEZZWW3MOQ==
@@ -1279,6 +1306,18 @@ aurelia-templating@^1.10.1, aurelia-templating@^1.3.0, aurelia-templating@^1.8.1
     aurelia-pal "^1.0.0"
     aurelia-path "^1.0.0"
     aurelia-task-queue "^1.1.0"
+
+aurelia-validation@^1.3.3:
+  version "1.3.3"
+  resolved "https://registry.yarnpkg.com/aurelia-validation/-/aurelia-validation-1.3.3.tgz#a8e6f84e58c70a5f7ccdb0203bcc26c4da325c30"
+  integrity sha512-oTZTQgVe6mv5LVVZ9C7C+EWIU4MyubxsuvaFFbX71PSMVxAx9YBCWI9iAO8BtGAZ8u0mJXJrgAE17YkLVn6x4g==
+  dependencies:
+    aurelia-binding "^2.1.5"
+    aurelia-dependency-injection "^1.4.1"
+    aurelia-logging "^1.5.0"
+    aurelia-pal "^1.8.0"
+    aurelia-task-queue "^1.3.1"
+    aurelia-templating "^1.9.0"
 
 aurelia-webpack-plugin@^3.0.0:
   version "3.0.0"
