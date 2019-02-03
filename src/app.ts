@@ -3,13 +3,27 @@ import "./infrastructure/styling/fontawesome";
 import "./app.scss";
 import { autoinject, PLATFORM } from "aurelia-framework";
 import { RouterConfiguration, Router } from "aurelia-router";
+import { TasksManager } from "./services/tasks-manager";
 
 @autoinject()
 export class App {
 
     public sidebarOpen: boolean = false;
+    public manager: TasksManager;
 
     private router: Router;
+
+    public constructor(manager: TasksManager) {
+        this.manager = manager;
+    }
+
+    public async attached() {
+        await this.manager.attached();
+    }
+
+    public async detached() {
+        await this.manager.detached();
+    }
 
     public toggleSidebar() {
         this.sidebarOpen = !this.sidebarOpen;
