@@ -2,10 +2,12 @@ import { autoinject } from "aurelia-framework";
 import { GetTasks } from "./queries/tasks/get-tasks";
 import { GetTask } from "./queries/tasks/get-task";
 import { Mediator } from "./mediator";
+import { EventAggregator } from "aurelia-event-aggregator";
 
 @autoinject
 export class TasksManager {
     private mediator: Mediator;
+    private ea: EventAggregator;
     private tasks: Task[] = [];
     public processingTasksCount: number;
 
@@ -14,14 +16,16 @@ export class TasksManager {
         new Process(10 * 1000, () => this.updateExistingTasks()),
     ];
 
-    public constructor(mediator: Mediator) {
+    public constructor(mediator: Mediator, ea: EventAggregator) {
         this.mediator = mediator;
+        this.ea = ea;
     }
 
     public async attached() {
         for (let process of this.processes) {
             await process.start();
         }
+        this.ea.subscribe("katalye:tasks:discovered", (event: any) => this.fetchNewTask(event));
     }
 
     public async detached() {
@@ -41,12 +45,29 @@ export class TasksManager {
                 this.tasks.push(task);
             }
         }
+
+        this.refreshStats();
     }
+
+    public async fetchNewTask(taskId: string) {
+        let task = await this.mediator
+            .for(GetTask.Request)
+            .handle<GetTask.Result>({
+                id: taskId
+            });
+        let missing = this.tasks.find(x => x.id == task.id) == null;
+        if (missing) {
+            this.tasks.push(task);
+        }
+
+        this.refreshStats();
+    }
+
     private async updateExistingTasks() {
 
         let uncompletedTasks = this.tasks.filter(x => x.status == "Processing" || x.status == "Queued");
-        let promises = uncompletedTasks.map(task => {
-            let result = this.mediator
+        let promises = uncompletedTasks.map(async task => {
+            let result = await this.mediator
                 .for(GetTask.Request)
                 .handle<GetTask.Result>({
                     id: task.id
@@ -57,7 +78,11 @@ export class TasksManager {
 
         await Promise.all(promises);
 
-        uncompletedTasks = this.tasks.filter(x => x.status == "Processing" || x.status == "Queued");
+        this.refreshStats();
+    }
+
+    private refreshStats() {
+        let uncompletedTasks = this.tasks.filter(x => x.status == "Processing" || x.status == "Queued");
         this.processingTasksCount = uncompletedTasks.length;
     }
 }

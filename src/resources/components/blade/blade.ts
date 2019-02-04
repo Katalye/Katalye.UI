@@ -8,6 +8,12 @@ export class Blade {
     })
     public open: boolean;
 
+    @bindable
+    public width: number = 60;
+
+    @bindable
+    public zIndex: number = 10;
+
     public element: HTMLElement;
 
     public close(event: Event) {

@@ -1,0 +1,25 @@
+<template>
+    <blade width.bind="30" open.bind="open" z-index.bind="100">
+        <span slot="title">
+            <li class="nav-item">
+                Background Tasks
+            </li>
+        </span>
+
+        <div>
+            <div class="card tasks">
+
+                <ul class="list-group list-group-flush">
+                    <template repeat.for="task of manager.tasks">
+                        <li class="list-group-item d-flex flex-column p-0">
+                            <div>
+                                ${task.id} - ${task.state}
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+
+    </blade>
+</template>

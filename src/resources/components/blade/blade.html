@@ -1,6 +1,7 @@
 <template>
 
-    <div class="blade ${open ? 'open' : 'close'}" element.ref="element" click.delegate="close($event)">
+    <div class="blade ${open ? 'open' : 'close'}" css="padding-left: ${100 - width}%; z-index: ${zIndex};" element.ref="element"
+        click.delegate="close($event)">
 
         <div class="blade-container border-left">
 

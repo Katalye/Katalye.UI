@@ -4,6 +4,7 @@ import { autoinject, computedFrom, PLATFORM } from "aurelia-framework";
 import { Router, RouterConfiguration } from "aurelia-router";
 import { GetMinion } from "../../../../services/queries/get-minion";
 import { GetMinionJobs } from "../../../../services/queries/get-minion-jobs";
+import { RefreshMinionGrains } from "../../../../services/commands/refresh-minion-grains";
 
 @autoinject
 export class Minion {
@@ -81,5 +82,13 @@ export class Minion {
     @computedFrom("router.currentInstruction.config.name")
     public get currentRoute() {
         return this.router.currentInstruction.config.name;
+    }
+
+    public async refreshGrains() {
+        await this.mediator
+            .for(RefreshMinionGrains.Request)
+            .handle<RefreshMinionGrains.Result>({
+                id: this.minionId
+            });
     }
 }

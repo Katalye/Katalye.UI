@@ -27,8 +27,8 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav border-left">
-                    <require from="./tray/tasks"></require>
-                    <tasks></tasks>
+                    <require from="./tray/tray-tasks"></require>
+                    <tray-tasks></tray-tasks>
                 </ul>
                 <ul class="navbar-nav border-left">
                     <li class="nav-item">
@@ -62,6 +62,8 @@
             </div>
             <div class="main-container">
                 <div class="scroll-area">
+                    <require from="./tasks"></require>
+                    <tasks></tasks>
                     <router-view></router-view>
                 </div>
             </div>
