@@ -3,80 +3,43 @@ import { GetTasks } from "./queries/tasks/get-tasks";
 import { GetTask } from "./queries/tasks/get-task";
 import { Mediator } from "./mediator";
 import { EventAggregator } from "aurelia-event-aggregator";
+import { EventServer } from "./event-server";
+import { IEvent } from "../infrastructure/hub-forwarder";
 
 @autoinject
 export class TasksManager {
     private mediator: Mediator;
-    private ea: EventAggregator;
-    private tasks: Task[] = [];
+    private eventServer: EventServer;
     public processingTasksCount: number;
+    public tasks: Task[] = [];
 
-    private processes: Process[] = [
-        new Process(60 * 1000, () => this.fetchNewTasks()),
-        new Process(10 * 1000, () => this.updateExistingTasks()),
-    ];
-
-    public constructor(mediator: Mediator, ea: EventAggregator) {
+    public constructor(mediator: Mediator, eventServer: EventServer) {
         this.mediator = mediator;
-        this.ea = ea;
+        this.eventServer = eventServer;
     }
 
     public async attached() {
-        for (let process of this.processes) {
-            await process.start();
-        }
-        this.ea.subscribe("katalye:tasks:discovered", (event: any) => this.fetchNewTask(event));
+        this.eventServer.subscribe(/v1:tasks:.*/, (event: IEvent) => {
+            this.upsertTask(event.data.taskId);
+        });
     }
 
     public async detached() {
-        for (let process of this.processes) {
-            process.stop();
-        }
+        this.eventServer.dispose();
     }
 
-    private async fetchNewTasks() {
-        let tasks = await this.mediator
-            .for(GetTasks.Request)
-            .handle<GetTasks.Result>({});
-
-        for (let task of tasks.result) {
-            let missing = this.tasks.find(x => x.id == task.id) == null;
-            if (missing) {
-                this.tasks.push(task);
-            }
-        }
-
-        this.refreshStats();
-    }
-
-    public async fetchNewTask(taskId: string) {
+    public async upsertTask(taskId: string) {
         let task = await this.mediator
             .for(GetTask.Request)
             .handle<GetTask.Result>({
                 id: taskId
             });
-        let missing = this.tasks.find(x => x.id == task.id) == null;
-        if (missing) {
+        let existingTask = this.tasks.find(x => x.id == taskId);
+        if (existingTask == null) {
             this.tasks.push(task);
+        } else {
+            Object.assign(existingTask, task);
         }
-
-        this.refreshStats();
-    }
-
-    private async updateExistingTasks() {
-
-        let uncompletedTasks = this.tasks.filter(x => x.status == "Processing" || x.status == "Queued");
-        let promises = uncompletedTasks.map(async task => {
-            let result = await this.mediator
-                .for(GetTask.Request)
-                .handle<GetTask.Result>({
-                    id: task.id
-                });
-
-            Object.assign(task, result);
-        });
-
-        await Promise.all(promises);
 
         this.refreshStats();
     }
@@ -84,25 +47,6 @@ export class TasksManager {
     private refreshStats() {
         let uncompletedTasks = this.tasks.filter(x => x.status == "Processing" || x.status == "Queued");
         this.processingTasksCount = uncompletedTasks.length;
-    }
-}
-
-class Process {
-    public interval: number;
-    public handler: () => Promise<void>;
-    private intervalId: number;
-    public constructor(interval: number, handler: () => Promise<void>) {
-        this.interval = interval;
-        this.handler = handler;
-    }
-
-    public async start() {
-        await this.handler();
-        this.intervalId = setInterval(this.handler, this.interval);
-    }
-
-    public stop() {
-        clearInterval(this.intervalId);
     }
 }
 

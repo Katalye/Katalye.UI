@@ -1,3 +1,4 @@
+import { HubForwarder } from './infrastructure/hub-forwarder';
 import "./infrastructure/styling/bootstrap";
 import "./infrastructure/styling/fontawesome";
 import "./app.scss";
@@ -10,15 +11,18 @@ export class App {
 
     public sidebarOpen: boolean = false;
     public manager: TasksManager;
+    public hubForwarder: HubForwarder;
 
     private router: Router;
 
-    public constructor(manager: TasksManager) {
+    public constructor(manager: TasksManager, hubForwarder: HubForwarder) {
         this.manager = manager;
+        this.hubForwarder = hubForwarder;
     }
 
     public async attached() {
         await this.manager.attached();
+        await this.hubForwarder.start();
     }
 
     public async detached() {

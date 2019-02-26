@@ -9,7 +9,11 @@ module.exports = merge(common, {
         historyApiFallback: true,
         port: 8080,
         proxy: {
-            '/api': 'http://localhost:5000'
+            '/api': 'http://localhost:5000',
+            '/hub': {
+                target: 'http://localhost:5000',
+                ws: true
+            }
         }
     },
 });
