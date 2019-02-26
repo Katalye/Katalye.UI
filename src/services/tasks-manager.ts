@@ -1,8 +1,6 @@
 import { autoinject } from "aurelia-framework";
-import { GetTasks } from "./queries/tasks/get-tasks";
 import { GetTask } from "./queries/tasks/get-task";
 import { Mediator } from "./mediator";
-import { EventAggregator } from "aurelia-event-aggregator";
 import { EventServer } from "./event-server";
 import { IEvent } from "../infrastructure/hub-forwarder";
 

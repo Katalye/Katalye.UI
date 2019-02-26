@@ -39,7 +39,7 @@ export class HubForwarder {
 
     private createConnection() {
         const connection = new signalR.HubConnectionBuilder()
-            .configureLogging(signalR.LogLevel.Debug)
+            .configureLogging(signalR.LogLevel.Warning)
             .withUrl("/hub/v1/events")
             .build();
         connection.onclose(async (error) => {
