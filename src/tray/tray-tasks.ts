@@ -1,3 +1,5 @@
+import "./tray-tasks.scss";
+
 import { TasksManager } from "./../services/tasks-manager";
 import { autoinject } from "aurelia-framework";
 import { EventAggregator } from "aurelia-event-aggregator";

@@ -11,6 +11,7 @@ export function configure(config: FrameworkConfiguration) {
         PLATFORM.moduleName("./components/type-ahead-select/type-ahead-select"),
         PLATFORM.moduleName("./components/loading/loading"),
         PLATFORM.moduleName("./components/blade/blade"),
+        PLATFORM.moduleName("./components/indeterminate/indeterminate"),
         PLATFORM.moduleName("./converters/date-time"),
         PLATFORM.moduleName("./converters/string"),
         PLATFORM.moduleName("./converters/arrays")

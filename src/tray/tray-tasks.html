@@ -1,10 +1,12 @@
 <template>
-    <li class="nav-item dropdown">
+    <li class="nav-item dropdown tray-tasks">
         <a class="nav-link" href="#" title="Open Tasks" click.delegate="toggle()">
-            <span class="badge badge-primary" if.bind="manager.processingTasksCount">
+            <span class="badge badge-primary count ${manager.processingTasksCount ? 'show' : '' }"
+                if.bind="manager.processingTasksCount">
                 ${manager.processingTasksCount}
             </span>
             <i class="far fa-bell fa-fw"></i>
         </a>
     </li>
+    <indeterminate running.bind="manager.processingTasksCount"></indeterminate>
 </template>

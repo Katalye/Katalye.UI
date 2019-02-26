@@ -1,0 +1,28 @@
+.indeterminate {
+    position: relative;
+    .indeterminate-bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: $accent-width;
+        &.running {
+            background-color: $primary;
+            animation: slide 1.2s linear infinite;
+        }
+    }
+    @keyframes slide {
+        0% {
+            margin-left: 0%;
+            width: 0;
+        }
+        50% {
+            margin-left: 0%;
+            width: 100%;
+        }
+        100% {
+            margin-left: 100%;
+            width: 0;
+        }
+    }
+}
